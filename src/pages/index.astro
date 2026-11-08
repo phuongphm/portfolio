@@ -892,6 +892,19 @@ const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sor
       </footer>
     </main>
     <script>
+      document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const target = document.querySelector<HTMLElement>(link.hash);
+          if (!target) return;
+
+          event.preventDefault();
+          target.scrollIntoView({
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+          });
+          window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+        });
+      });
+
       const awardLightbox = document.querySelector<HTMLDialogElement>("#award-certificate-lightbox");
       const awardLightboxImage = document.querySelector<HTMLImageElement>("[data-award-lightbox-image]");
       const oxfordLightbox = document.querySelector<HTMLDialogElement>("#oxford-certificate-lightbox");
