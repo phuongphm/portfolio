@@ -1,0 +1,181 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import "../../styles/global.css";
+
+type Props = {
+  post: CollectionEntry<"blog">;
+  translation?: CollectionEntry<"blog">;
+  language: "en" | "vi";
+};
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+  const englishPosts = allPosts.filter((post) => post.data.language === "en");
+  const translations = new Map(
+    allPosts
+      .filter((post) => post.data.language === "vi")
+      .map((post) => [post.data.translationKey ?? post.id, post]),
+  );
+
+  return englishPosts.flatMap((post) => {
+    const translation = translations.get(post.data.translationKey ?? post.id);
+
+    return [
+      {
+        params: { slug: post.id },
+        props: { post, translation, language: "en" as const },
+      },
+      ...(translation
+        ? [
+            {
+              params: { slug: `${post.id}/vi` },
+              props: { post, translation, language: "vi" as const },
+            },
+          ]
+        : []),
+    ];
+  });
+}
+
+const { post, translation, language } = Astro.props;
+const page = language === "vi" && translation ? translation : post;
+const { Content } = await render(page);
+const siteUrl = Astro.site ?? new URL("https://phuongphm.github.io");
+const canonicalUrl = new URL(
+  `${import.meta.env.BASE_URL}/blog/${post.id}/${language === "vi" ? "vi/" : ""}`,
+  siteUrl,
+).href;
+const coverImage = page.data.coverImage ?? post.data.coverImage;
+const coverImageUrl = coverImage
+  ? new URL(`${import.meta.env.BASE_URL}/${coverImage.replace(/^\/+/, "")}`, siteUrl).href
+  : undefined;
+---
+
+<!doctype html>
+<html lang={language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#f5f3ec" />
+    <meta name="description" content={page.data.description} />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={`${page.data.title} — Phuong Pham`} />
+    <meta property="og:description" content={page.data.description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content={language === "vi" ? "vi_VN" : "en_US"} />
+    {coverImageUrl && <meta property="og:image" content={coverImageUrl} />}
+    <link rel="canonical" href={canonicalUrl} />
+    {translation && (
+      <>
+        <link
+          rel="alternate"
+          hreflang="en"
+          href={new URL(`${import.meta.env.BASE_URL}/blog/${post.id}/`, siteUrl).href}
+        />
+        <link
+          rel="alternate"
+          hreflang="vi"
+          href={new URL(`${import.meta.env.BASE_URL}/blog/${post.id}/vi/`, siteUrl).href}
+        />
+      </>
+    )}
+    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}/favicon.png`} />
+    <title>{page.data.title} — Phuong Pham</title>
+  </head>
+  <body class="bg-[#f5f3ec] text-[#20372b] antialiased">
+    <main class="mx-auto min-h-screen max-w-3xl px-5 sm:px-8">
+      <header class="flex items-center justify-between gap-4 py-5">
+        <a href={`${import.meta.env.BASE_URL}/`} class="group flex items-center gap-3" aria-label="Phuong Pham, home">
+          <span class="flex size-10 items-center justify-center rounded-full bg-[#20372b] text-lg font-semibold text-[#cfe8b3] transition-transform group-hover:rotate-12">P</span>
+          <span class="text-sm font-semibold tracking-wide">PHUONG PHAM</span>
+        </a>
+        <a href={`${import.meta.env.BASE_URL}/#blog`} class="inline-flex items-center gap-2 rounded-full border border-[#20372b]/15 px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-white">
+          <span aria-hidden="true">←</span>
+          All stories
+        </a>
+        {translation && (
+          <div class="inline-flex shrink-0 items-center rounded-full border border-[#20372b]/15 bg-white/70 p-1" role="group" aria-label="Language">
+            {language === "en" ? (
+              <span aria-current="page" class="rounded-full bg-[#20372b] px-3 py-1.5 text-xs font-semibold text-white">EN</span>
+            ) : (
+              <a href={`${import.meta.env.BASE_URL}/blog/${post.id}/`} class="rounded-full px-3 py-1.5 text-xs font-semibold text-[#687469] transition-colors hover:text-[#20372b]">EN</a>
+            )}
+            {language === "vi" ? (
+              <span aria-current="page" class="rounded-full bg-[#20372b] px-3 py-1.5 text-xs font-semibold text-white">VI</span>
+            ) : (
+              <a href={`${import.meta.env.BASE_URL}/blog/${post.id}/vi/`} class="rounded-full px-3 py-1.5 text-xs font-semibold text-[#687469] transition-colors hover:text-[#20372b]">VI</a>
+            )}
+          </div>
+        )}
+      </header>
+
+      <article class="py-12 sm:py-20">
+        <a href={`${import.meta.env.BASE_URL}/#blog`} class="text-xs font-semibold uppercase tracking-[0.2em] text-[#789257]">Stories / Blog</a>
+        <h1 class="mt-5 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">{page.data.title}</h1>
+        <p class="mt-5 text-lg leading-8 text-[#687469]">{page.data.description}</p>
+        <div class="mt-6 flex flex-wrap items-center gap-3 text-sm text-[#687469]">
+          {page.data.category && <span class="rounded-full bg-[#e5eadc] px-3 py-1.5 font-medium text-[#456047]">{page.data.category}</span>}
+          {page.data.pubDate && <time datetime={page.data.pubDate.toISOString()}>{page.data.pubDate.toLocaleDateString(language === "vi" ? "vi-VN" : "en", { year: "numeric", month: "long", day: "numeric" })}</time>}
+        </div>
+
+        <div class="blog-content mt-12 border-t border-[#20372b]/10 pt-8 sm:mt-16 sm:pt-10">
+          <Content />
+        </div>
+
+        <a href={`${import.meta.env.BASE_URL}/#blog`} class="mt-12 inline-flex items-center gap-2 rounded-full bg-[#20372b] px-5 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#456047]">
+          <span aria-hidden="true">←</span>
+          Back to all stories
+        </a>
+      </article>
+    </main>
+  </body>
+</html>
+
+<style>
+  .blog-content :global(h2) {
+    margin-top: 2rem;
+    color: #20372b;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  .blog-content :global(p),
+  .blog-content :global(ul),
+  .blog-content :global(ol) {
+    margin-top: 1rem;
+    color: #596a5c;
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+
+  .blog-content :global(ul),
+  .blog-content :global(ol) {
+    padding-left: 1.5rem;
+  }
+
+  .blog-content :global(ul) {
+    list-style: disc;
+  }
+
+  .blog-content :global(ol) {
+    list-style: decimal;
+  }
+
+  .blog-content :global(a) {
+    color: #456047;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .blog-content :global(img) {
+    margin-top: 1.5rem;
+    height: auto;
+    max-width: 100%;
+    border-radius: 1rem;
+  }
+
+  .blog-content :global(strong) {
+    color: #20372b;
+  }
+</style>

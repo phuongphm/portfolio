@@ -531,7 +531,7 @@ const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sor
                 Collaborated on FAMIL.AI, combining family media literacy and AI in a board game and web app that encourage critical thinking.
               </p>
               <p class="mt-4 rounded-xl bg-white/75 px-4 py-3 text-sm font-semibold text-[#456047]">Board game · Web application · Family media literacy</p>
-              <a href={`${import.meta.env.BASE_URL}/blog/famil_ai_blog/`} class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#456047] underline decoration-[#456047]/30 underline-offset-4 transition-colors hover:text-[#20372b]">
+              <a href={`${import.meta.env.BASE_URL}/blog/famil_ai_blog/`} data-vietnamese-href={`${import.meta.env.BASE_URL}/blog/famil_ai_blog/vi/`} class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#456047] underline decoration-[#456047]/30 underline-offset-4 transition-colors hover:text-[#20372b]">
                 Read the project story <span aria-hidden="true">→</span>
               </a>
             </div>
@@ -569,7 +569,7 @@ const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sor
                 Created an AI-powered IELTS Writing Task 2 assistant that helps learners brainstorm, develop, and organize ideas with interactive mind mapping.
               </p>
               <p class="mt-4 rounded-xl bg-white/75 px-4 py-3 text-sm font-semibold text-[#45618a]">“Branch Out Your Ideas, Master Your IELTS.”</p>
-              <a href={`${import.meta.env.BASE_URL}/blog/ramify/`} class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#45618a] underline decoration-[#45618a]/30 underline-offset-4 transition-colors hover:text-[#20372b]">
+              <a href={`${import.meta.env.BASE_URL}/blog/ramify/`} data-vietnamese-href={`${import.meta.env.BASE_URL}/blog/ramify/vi/`} class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#45618a] underline decoration-[#45618a]/30 underline-offset-4 transition-colors hover:text-[#20372b]">
                 Read the project story <span aria-hidden="true">→</span>
               </a>
             </div>
@@ -767,7 +767,13 @@ const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sor
           {blogPosts.length > 0 ? (
             <div class="mt-8 grid gap-5 md:grid-cols-2">
               {blogPosts.map((post) => (
-                <a href={`${import.meta.env.BASE_URL}/blog/${post.id}/`} class="group overflow-hidden rounded-2xl bg-white ring-1 ring-[#20372b]/10 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-[#20372b]/10">
+                <a
+                  href={`${import.meta.env.BASE_URL}/blog/${post.id}/`}
+                  data-vietnamese-href={localizedBlogPosts.has(post.data.translationKey ?? post.id)
+                    ? `${import.meta.env.BASE_URL}/blog/${post.id}/vi/`
+                    : undefined}
+                  class="group overflow-hidden rounded-2xl bg-white ring-1 ring-[#20372b]/10 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-[#20372b]/10"
+                >
                   {(() => {
                     const translation = localizedBlogPosts.get(post.data.translationKey ?? post.id);
                     return (
@@ -893,6 +899,14 @@ const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sor
       </footer>
     </main>
     <script>
+      document.querySelectorAll<HTMLAnchorElement>("[data-vietnamese-href]").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.localStorage.getItem("site-language") === "vi" && link.dataset.vietnameseHref) {
+            link.href = link.dataset.vietnameseHref;
+          }
+        });
+      });
+
       document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) => {
         link.addEventListener("click", (event) => {
           const target = document.querySelector<HTMLElement>(link.hash);
