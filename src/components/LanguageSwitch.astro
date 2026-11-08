@@ -1,0 +1,143 @@
+<div class="inline-flex shrink-0 items-center rounded-full border border-[#20372b]/15 bg-white/70 p-1" role="group" aria-label="Language">
+  <button
+    type="button"
+    data-language="en"
+    aria-pressed="true"
+    class="rounded-full px-3 py-1.5 text-xs font-semibold text-[#687469] transition-colors aria-pressed:bg-[#20372b] aria-pressed:text-white"
+  >
+    EN
+  </button>
+  <button
+    type="button"
+    data-language="vi"
+    aria-pressed="false"
+    class="rounded-full px-3 py-1.5 text-xs font-semibold text-[#687469] transition-colors aria-pressed:bg-[#20372b] aria-pressed:text-white"
+  >
+    VI
+  </button>
+</div>
+
+<script>
+  import { siteTranslations } from "../i18n/siteTranslations";
+
+  const languageButtons = document.querySelectorAll<HTMLButtonElement>("[data-language]");
+  const originalText = new WeakMap<Text, string>();
+  const originalAttributes = new WeakMap<Element, Map<string, string>>();
+  const pageTitle = document.title;
+
+  const normalize = (value: string) => value.trim().replace(/\s+/g, " ");
+
+  function translateText(english: string, language: "en" | "vi", element?: Element | null) {
+    if (language === "en") return english;
+
+    const dateTime = element instanceof HTMLTimeElement ? element.dateTime : "";
+    if (dateTime) {
+      const monthStyle = english.match(/^[A-Za-z]+/)?.[0].length === 3 ? "short" : "long";
+      return new Intl.DateTimeFormat("vi-VN", {
+        day: "numeric",
+        month: monthStyle,
+        year: "numeric",
+      }).format(new Date(dateTime));
+    }
+
+    const translated = siteTranslations[english];
+    if (translated) return translated;
+
+    const storyCount = english.match(/^(\d+) stories?$/);
+    if (storyCount) return `${storyCount[1]} bài viết`;
+
+    const demoNumber = english.match(/^Demo (\d+)$/);
+    if (demoNumber) return `Hoạt động ${demoNumber[1]}`;
+
+    if (english.endsWith(" — Phuong Pham")) {
+      const title = english.slice(0, -" — Phuong Pham".length);
+      if (title.includes(" at ")) {
+        const [role, company] = title.split(" at ");
+        return `${siteTranslations[role] ?? role} tại ${company} — Phuong Pham`;
+      }
+      if (title === "Phuong Pham") return `${title} — ${siteTranslations["Coding Teacher"]}`;
+      return `${siteTranslations[title] ?? title} — Phuong Pham`;
+    }
+
+    if (english.startsWith("Experience / ")) {
+      return `Kinh nghiệm / ${english.slice("Experience / ".length)}`;
+    }
+
+    return undefined;
+  }
+
+  function setLanguage(language: "en" | "vi") {
+    document.documentElement.lang = language;
+    document.title = translateText(pageTitle, language) ?? pageTitle;
+
+    document.querySelectorAll<HTMLElement>("[data-language-content]").forEach((content) => {
+      content.hidden = content.dataset.languageContent !== language;
+    });
+
+    const walker = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_TEXT);
+    let node = walker.nextNode();
+    while (node) {
+      const textNode = node as Text;
+      const parent = textNode.parentElement;
+      if (
+        parent &&
+        !parent.closest("script, style, [data-keep-english], [data-language-content]")
+      ) {
+        const english = originalText.get(textNode) ?? normalize(textNode.textContent ?? "");
+        originalText.set(textNode, english);
+        const translated = translateText(english, language, parent);
+        if (translated) {
+          const current = textNode.textContent ?? "";
+          const leading = current.match(/^\s*/)?.[0] ?? "";
+          const trailing = current.match(/\s*$/)?.[0] ?? "";
+          textNode.textContent = `${leading}${translated}${trailing}`;
+        } else if (language === "en") {
+          const current = textNode.textContent ?? "";
+          const leading = current.match(/^\s*/)?.[0] ?? "";
+          const trailing = current.match(/\s*$/)?.[0] ?? "";
+          textNode.textContent = `${leading}${english}${trailing}`;
+        }
+      }
+      node = walker.nextNode();
+    }
+
+    document.querySelectorAll<HTMLElement>("*").forEach((element) => {
+      if (element.closest("#certification, [data-keep-english], [data-language-content]")) return;
+      const attributes = ["aria-label", "title", "alt"];
+      if (element instanceof HTMLMetaElement && element.name === "description") {
+        attributes.push("content");
+      }
+
+      for (const attribute of attributes) {
+        const value = element.getAttribute(attribute);
+        if (!value) continue;
+
+        let originals = originalAttributes.get(element);
+        if (!originals) {
+          originals = new Map();
+          originalAttributes.set(element, originals);
+        }
+        const english = originals.get(attribute) ?? value;
+        originals.set(attribute, english);
+        const translated = translateText(normalize(english), language);
+        if (translated) element.setAttribute(attribute, translated);
+        else if (language === "en") element.setAttribute(attribute, english);
+      }
+    });
+
+    languageButtons.forEach((button) => {
+      button.setAttribute("aria-pressed", String(button.dataset.language === language));
+    });
+  }
+
+  const savedLanguage = window.localStorage.getItem("site-language");
+  setLanguage(savedLanguage === "vi" ? "vi" : "en");
+
+  languageButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const language = button.dataset.language === "vi" ? "vi" : "en";
+      window.localStorage.setItem("site-language", language);
+      setLanguage(language);
+    });
+  });
+</script>

@@ -1,0 +1,963 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import heroImage from "../assets/hero.png";
+import iloCertificate from "../assets/ILO.jpg";
+import safeguardingCertificate from "../assets/218_3_92322_1787894364_Default course certificate.pdf?url";
+import teachingLearnersCertificate from "../assets/Teaching to Young Learner.jpg";
+import oxfordCertificate from "../assets/oxford.pdf?url";
+import unescoCertificate from "../assets/UNESCO.pdf?url";
+import aiRiserCertificate from "../assets/AI RISER.pdf?url";
+import snapologyLogo from "../assets/Snapology.png";
+import mindxLogo from "../assets/Mindx.png";
+import tageduLogo from "../assets/TagEdu.png";
+import digiuniLogo from "../assets/digiuni.png";
+import "../styles/global.css";
+import LanguageSwitch from "../components/LanguageSwitch.astro";
+
+const name = "Phuong Pham";
+const role = "Coding Teacher";
+const allBlogPosts = await getCollection("blog", ({ data }) => !data.draft);
+const localizedBlogPosts = new Map(
+  allBlogPosts
+    .filter((post) => post.data.language === "vi")
+    .map((post) => [post.data.translationKey ?? post.id, post]),
+);
+const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sort(
+  (first, second) =>
+    (second.data.pubDate?.getTime() ?? 0) - (first.data.pubDate?.getTime() ?? 0),
+);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta
+      name="description"
+      content="The portfolio of Phuong Pham, coding teacher and STEM educator."
+    />
+    <meta name="theme-color" content="#f5f3ec" />
+    <title>{name} — {role}</title>
+  </head>
+
+  <body class="bg-[#f5f3ec] text-[#20372b] antialiased">
+    <main class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+      <header class="sticky top-0 z-50 flex flex-wrap items-center justify-between gap-5 bg-[#f5f3ec] py-5">
+        <a href="#about" class="group flex items-center gap-3" aria-label="Phuong Pham, home">
+          <span class="flex size-10 items-center justify-center rounded-full bg-[#20372b] text-lg font-semibold text-[#cfe8b3] transition-transform group-hover:rotate-12">
+            P
+          </span>
+          <span class="text-sm font-semibold tracking-wide">PHUONG PHAM</span>
+        </a>
+
+        <nav aria-label="Main navigation">
+          <ul class="flex flex-wrap items-center justify-end gap-x-4 gap-y-2 text-sm text-[#5c695e] sm:gap-x-6">
+            <li><a href="#about" class="rounded-full px-2 py-2 transition-colors hover:text-[#20372b]">About</a></li>
+            <li><a href="#education" class="rounded-full px-2 py-2 transition-colors hover:text-[#20372b]">Education</a></li>
+            <li><a href="#certification" class="rounded-full px-2 py-2 transition-colors hover:text-[#20372b]">Certification</a></li>
+            <li><a href="#experience" class="rounded-full px-2 py-2 transition-colors hover:text-[#20372b]">Experience</a></li>
+            <li><a href="#projects" class="rounded-full px-2 py-2 transition-colors hover:text-[#20372b]">Projects</a></li>
+            <li><a href="#awards" class="rounded-full px-2 py-2 transition-colors hover:text-[#20372b]">Awards</a></li>
+            <li><a href="#blog" class="rounded-full px-2 py-2 transition-colors hover:text-[#20372b]">Blog</a></li>
+            <li><a href="#contact" class="rounded-full px-2 py-2 transition-colors hover:text-[#20372b]">Contact</a></li>
+          </ul>
+        </nav>
+        <LanguageSwitch />
+      </header>
+
+      <section id="about" class="scroll-mt-24 py-8 sm:py-12 lg:py-16">
+        <div class="grid items-center gap-10 lg:grid-cols-[1fr_0.95fr] lg:gap-14">
+          <div class="relative z-10 py-4 sm:py-8">
+            <p class="mb-6 inline-flex items-center gap-3 rounded-full border border-[#20372b]/15 bg-white/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#456047]">
+              <span class="size-2 rounded-full bg-[#789257]"></span>
+              Coding teacher · STEM educator
+            </p>
+            <h1 class="max-w-2xl text-5xl font-semibold leading-[1.03] tracking-[-0.055em] sm:text-7xl lg:text-[5.25rem]">
+              Hi, I’m <span class="text-[#789257]">{name}.</span>
+            </h1>
+            <p class="mt-7 max-w-xl text-base leading-8 text-[#596a5c] sm:text-lg">
+              I inspire children to explore coding, create with technology, and
+              grow into confident problem-solvers.
+            </p>
+            <div class="mt-9 flex flex-wrap gap-3">
+              <a
+                href="#experience"
+                class="group inline-flex items-center gap-3 rounded-full bg-[#20372b] px-6 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#456047]"
+              >
+                Get to know my work
+                <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+              </a>
+              <a
+                href="#education"
+                class="inline-flex items-center rounded-full border border-[#20372b]/20 px-6 py-3.5 text-sm font-semibold text-[#20372b] transition-colors hover:border-[#20372b] hover:bg-white/70"
+              >
+                My background
+              </a>
+            </div>
+            <div class="mt-6 flex items-center gap-3" aria-label="Quick contact links">
+              <a
+                href="https://www.linkedin.com/in/phuong-pham-/"
+                target="_blank"
+                rel="noreferrer"
+                class="flex size-11 items-center justify-center rounded-full border border-[#20372b]/15 bg-white/60 text-[#20372b] transition-all hover:-translate-y-0.5 hover:bg-[#cfe8b3]"
+                aria-label="Connect with Phuong on LinkedIn"
+                title="LinkedIn"
+              >
+                <svg viewBox="0 0 24 24" class="size-5 fill-current" aria-hidden="true" focusable="false">
+                  <path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.7H4.97V9.16h2.96v9.54ZM6.45 7.86a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44Zm12.26 10.84h-2.95v-4.64c0-1.11-.02-2.54-1.55-2.54-1.55 0-1.79 1.21-1.79 2.46v4.72H9.47V9.16h2.83v1.3h.04c.39-.75 1.36-1.55 2.8-1.55 3 0 3.57 1.97 3.57 4.54v5.25Z" />
+                </svg>
+              </a>
+              <a
+                href="tel:+84708259673"
+                class="flex size-11 items-center justify-center rounded-full border border-[#20372b]/15 bg-white/60 text-[#20372b] transition-all hover:-translate-y-0.5 hover:bg-[#cfe8b3]"
+                aria-label="Call Phuong at plus 84 708 259 673"
+                title="Call"
+              >
+                <svg viewBox="0 0 24 24" class="size-5 fill-none stroke-current" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                  <path d="M7.2 3.5h2.6l1.3 4.1-1.8 1.7a15.1 15.1 0 0 0 5.4 5.4l1.7-1.8 4.1 1.3v2.6a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 5.2 5.7a2 2 0 0 1 2-2.2Z" />
+                </svg>
+              </a>
+              <a
+                href="mailto:pqphuonghcm@gmail.com"
+                class="flex size-11 items-center justify-center rounded-full border border-[#20372b]/15 bg-white/60 text-[#20372b] transition-all hover:-translate-y-0.5 hover:bg-[#cfe8b3]"
+                aria-label="Email Phuong at pqphuonghcm@gmail.com"
+                title="Email"
+              >
+                <svg viewBox="0 0 24 24" class="size-5 fill-none stroke-current" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="m4 7 8 6 8-6" />
+                </svg>
+              </a>
+              <span class="ml-1 text-xs font-medium text-[#687469]">Let’s connect</span>
+            </div>
+            <div class="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-xs font-semibold uppercase tracking-[0.13em] text-[#687469] sm:gap-x-8">
+              <span>Learn by making</span>
+              <span>Stay curious</span>
+              <span>Build with purpose</span>
+            </div>
+          </div>
+
+          <div class="relative flex min-h-[360px] items-end justify-center overflow-hidden rounded-[2rem] bg-[#dce5d2] sm:min-h-[470px] lg:min-h-[570px]">
+            <div class="absolute left-8 top-8 size-24 rounded-full border border-[#456047]/20 sm:left-12 sm:top-12 sm:size-32" aria-hidden="true"></div>
+            <div class="absolute right-8 top-12 size-3 rounded-full bg-[#789257] sm:right-16 sm:top-20 sm:size-4" aria-hidden="true"></div>
+            <div class="absolute bottom-8 left-8 h-px w-20 bg-[#456047]/30 sm:bottom-12 sm:left-12 sm:w-28" aria-hidden="true"></div>
+            <div class="absolute left-4 top-16 z-20 -rotate-6 rounded-xl border-2 border-[#20372b] bg-[#cfe8b3] px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-[#20372b] shadow-[4px_4px_0_#20372b] sm:left-8 sm:top-24 sm:px-4 sm:py-3 sm:text-xs">
+              Your friendly<br />coding teacher!
+            </div>
+            <div class="hero-float relative z-10 w-full max-w-[520px] px-5 pt-5 sm:px-8">
+              <Image
+                src={heroImage}
+                alt="Illustration of a coding teacher working on a laptop"
+                class="mx-auto max-h-[560px] w-full object-contain object-bottom"
+                loading="eager"
+              />
+            </div>
+            <div class="absolute bottom-5 right-5 z-20 rounded-2xl border-2 border-[#20372b] bg-[#f5f3ec] px-4 py-3 text-xs font-bold text-[#456047] shadow-[4px_4px_0_#20372b] sm:bottom-8 sm:right-8">
+              <span class="mr-2 text-[#789257]" aria-hidden="true">✳</span>
+              Learn. Make. Repeat.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="ticker-strip overflow-hidden border-y-2 border-[#20372b] bg-[#cfe8b3] py-4" aria-label="Curiosity, creativity, coding, and learning">
+        <div class="ticker-track flex w-max items-center gap-8 text-sm font-bold uppercase tracking-[0.18em] text-[#20372b] sm:gap-12">
+          {Array.from({ length: 2 }).map(() => (
+            <span class="flex items-center gap-8 sm:gap-12" aria-hidden="true">
+              <span>Curiosity first</span><span class="text-xl">✳</span>
+              <span>Code & create</span><span class="text-xl">✳</span>
+              <span>Big ideas, little learners</span><span class="text-xl">✳</span>
+              <span>Learn by doing</span><span class="text-xl">✳</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <section id="education" class="scroll-mt-24 py-12 sm:py-16">
+        <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#789257]">01 / Education</p>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">The roots of my journey.</h2>
+          </div>
+          <p class="max-w-sm text-sm leading-6 text-[#687469]">A background in language, communication, and lifelong learning.</p>
+        </div>
+
+        <article class="group relative overflow-hidden rounded-[2rem] bg-[#20372b] p-6 text-[#f5f3ec] shadow-[0_24px_60px_rgba(32,55,43,0.18)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_70px_rgba(32,55,43,0.24)] sm:p-8 lg:p-10">
+          <span class="absolute -right-12 -top-12 size-40 rounded-full border border-white/10 transition-transform duration-500 group-hover:scale-110" aria-hidden="true"></span>
+          <span class="absolute -bottom-10 -left-8 size-36 rounded-full border border-white/10" aria-hidden="true"></span>
+          <div class="relative grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div class="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-[#cfe8b3] text-[#20372b]" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="size-7">
+                    <path d="m2 10 10-5 10 5-10 5-10-5Z" />
+                    <path d="M6 12v5c3.5 3 8.5 3 12 0v-5" />
+                    <path d="M22 10v6" />
+                  </svg>
+                </div>
+
+                <div class="min-w-0 flex-1">
+                  <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <div>
+                      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#cfe8b3]">Bachelor’s degree</p>
+                      <h3 class="mt-2 text-2xl font-semibold leading-snug sm:text-3xl">University of Finance and Marketing</h3>
+                    </div>
+                    <span class="w-fit shrink-0 whitespace-nowrap rounded-full bg-[#f5f3ec] px-4 py-2 text-sm font-medium text-[#20372b]">GPA 3.17 / 4.0</span>
+                  </div>
+                  <p class="mt-3 max-w-md text-[#d0d9ce]">Business English</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4 border-t border-white/10 pt-5 text-sm">
+                <span class="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-[#cfe8b3]" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="size-7">
+                    <path d="M8 21h8m-4-4v4" />
+                    <path d="M7 4h10v5a5 5 0 0 1-10 0V4Z" />
+                    <path d="M7 6H4v2a4 4 0 0 0 4 4m9-6h3v2a4 4 0 0 1-4 4" />
+                  </svg>
+                </span>
+                <div class="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-2">
+                  <span class="font-semibold text-[#cfe8b3]">Scholarship recipient</span>
+                  <span class="text-[#93a18e]" aria-hidden="true">/</span>
+                  <span class="text-[#dfead8]">Encouraging Study Scholarship</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative">
+              <div class="education-float absolute -left-4 -top-4 h-16 w-16 rounded-2xl border border-white/20 bg-[#cfe8b3]/90" aria-hidden="true"></div>
+              <div class="education-float delay-1 absolute -right-2 bottom-3 h-20 w-20 rounded-full border border-white/20 bg-[#dfead8]/80" aria-hidden="true"></div>
+
+              <div class="relative rounded-[1.75rem] border border-white/10 bg-[#f5f3ec] p-5 text-[#20372b] shadow-[0_18px_40px_rgba(0,0,0,0.12)]">
+                <div class="mb-4 flex items-center justify-between gap-3">
+                  <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#456047]">Relevant courses</p>
+                  <span class="inline-flex size-8 items-center justify-center rounded-full bg-[#cfe8b3] text-[#20372b]" aria-hidden="true">✦</span>
+                </div>
+
+                <ul class="space-y-3">
+                  <li class="course-item flex items-center justify-between gap-4 rounded-2xl bg-white px-3 py-3 shadow-sm ring-1 ring-[#20372b]/5">
+                    <span class="text-sm leading-6 text-[#20372b]">Introduction to English Language Teaching</span>
+                    <span class="rounded-full bg-[#edf7e5] px-2.5 py-1 text-xs font-semibold text-[#456047]">3.0/4.0</span>
+                  </li>
+                  <li class="course-item flex items-center justify-between gap-4 rounded-2xl bg-white px-3 py-3 shadow-sm ring-1 ring-[#20372b]/5">
+                    <span class="text-sm leading-6 text-[#20372b]">Phonetics and Phonology</span>
+                    <span class="rounded-full bg-[#edf7e5] px-2.5 py-1 text-xs font-semibold text-[#456047]">4.0/4.0</span>
+                  </li>
+                  <li class="course-item flex items-center justify-between gap-4 rounded-2xl bg-white px-3 py-3 shadow-sm ring-1 ring-[#20372b]/5">
+                    <span class="text-sm leading-6 text-[#20372b]">Business Communication Skills</span>
+                    <span class="rounded-full bg-[#edf7e5] px-2.5 py-1 text-xs font-semibold text-[#456047]">3.0/4.0</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section id="certification" class="scroll-mt-24 py-12 sm:py-16">
+        <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#456047]">02 / Certification</p>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Credentials I’m proud of.</h2>
+          </div>
+          <p class="max-w-sm text-sm leading-6 text-[#687469]">Explore my teaching, language, and web development credentials.</p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <article class="group flex min-h-64 flex-col rounded-3xl border border-[#20372b]/10 bg-white/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-xl hover:shadow-[#20372b]/5 sm:p-7">
+            <div class="flex items-start justify-between gap-4">
+              <span class="flex size-12 items-center justify-center rounded-2xl bg-[#e5eadc] text-[#456047]" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="size-6">
+                  <path d="M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" />
+                  <path d="m8.2 14.6-1 6.4 3.8-2 3.8 2-1-6.4" />
+                </svg>
+              </span>
+              <span class="rounded-full bg-[#f0f1e9] px-3 py-1.5 text-xs font-medium text-[#687469]">150 hours</span>
+            </div>
+            <div class="mt-6 flex-1">
+              <h3 class="text-xl font-semibold">TESOL Certificate</h3>
+              <p class="mt-2 text-sm text-[#687469]">Arizona State University</p>
+            </div>
+            <!-- Replace # with the public URL for this certificate. -->
+            <a href="https://drive.google.com/file/d/1sb2VT5jd_OUdmjAnM9LOWS050IuFJWpl/view?usp=sharing" target="_blank" rel="noreferrer" class="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#20372b] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#456047]">
+              View certificate 
+            </a>
+          </article>
+
+          <article class="group flex min-h-64 flex-col rounded-3xl border border-[#20372b]/10 bg-white/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-xl hover:shadow-[#20372b]/5 sm:p-7">
+            <div class="flex items-start justify-between gap-4">
+              <span class="flex size-12 items-center justify-center rounded-2xl bg-[#e5eadc] text-[#456047]" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="size-6">
+                  <path d="M4 5h16v14H4z" />
+                  <path d="M8 9h8M8 13h5" />
+                  <path d="m15 17 2 2 4-4" />
+                </svg>
+              </span>
+              <span class="rounded-full bg-[#f0f1e9] px-3 py-1.5 text-xs font-medium text-[#687469]">Overall 6.5</span>
+            </div>
+            <div class="mt-6 flex-1">
+              <h3 class="text-xl font-semibold">IELTS Certificate</h3>
+              <p class="mt-2 text-sm leading-6 text-[#687469]">Reading 7.0 <span class="px-1 text-[#a2ad9d]">·</span> Listening 6.0 <span class="px-1 text-[#a2ad9d]">·</span> Writing 6.0 <span class="px-1 text-[#a2ad9d]">·</span> Speaking 6.0</p>
+            </div>
+            <!-- Replace # with the public URL for this certificate. -->
+            <a href="https://drive.google.com/file/d/1X-I_T3tmLZiwXio7tnx4X-Ne7w90tp4b/view?usp=drive_link" target="_blank" rel="noreferrer" class="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#20372b] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#456047]">
+              View certificate
+            </a>
+          </article>
+
+          <article class="group flex min-h-64 flex-col rounded-3xl border border-[#20372b]/10 bg-white/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-xl hover:shadow-[#20372b]/5 sm:p-7">
+            <div class="flex items-start justify-between gap-4">
+              <span class="flex size-12 items-center justify-center rounded-2xl bg-[#e5eadc] text-[#456047]" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="size-6">
+                  <path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14" />
+                </svg>
+              </span>
+              <span class="rounded-full bg-[#f0f1e9] px-3 py-1.5 text-xs font-medium text-[#687469]">Meta</span>
+            </div>
+            <div class="mt-6 flex-1">
+              <h3 class="text-xl font-semibold">Introduction to Front-End Development</h3>
+              <p class="mt-2 text-sm text-[#687469]">Meta</p>
+            </div>
+            <!-- Replace # with the public URL for this certificate. -->
+            <a href="https://drive.google.com/file/d/1DUFOHuqPIZVD9kM261zPCj3xDwpvW3BX/view?usp=drive_link" target="_blank" rel="noreferrer" class="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#20372b] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#456047]">
+              View certificate 
+            </a>
+          </article>
+
+          <article class="group flex min-h-64 flex-col rounded-3xl border border-[#20372b]/10 bg-white/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-xl hover:shadow-[#20372b]/5 sm:p-7">
+            <div class="flex items-start justify-between gap-4">
+              <span class="flex size-12 items-center justify-center rounded-2xl bg-[#e5eadc] text-[#456047]" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="size-6">
+                  <path d="M4 5h16v14H4z" />
+                  <path d="m8 10-2 2 2 2M12 14h4" />
+                </svg>
+              </span>
+              <span class="rounded-full bg-[#f0f1e9] px-3 py-1.5 text-xs font-medium text-[#687469]">freeCodeCamp</span>
+            </div>
+            <div class="mt-6 flex-1">
+              <h3 class="text-xl font-semibold">Legacy Responsive Web Design</h3>
+              <p class="mt-2 text-sm text-[#687469]">freeCodeCamp</p>
+            </div>
+            <!-- Replace # with the public URL for this certificate. -->
+            <a href="https://drive.google.com/file/d/1Jgy53jTNLl1KSgQ194rCICMtAi0iB4zm/view?usp=drive_link" target="_blank" rel="noreferrer" class="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#20372b] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#456047]">
+              View certificate 
+            </a>
+          </article>
+
+          <article class="group flex min-h-64 flex-col rounded-3xl border border-[#20372b]/10 bg-white/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-xl hover:shadow-[#20372b]/5 sm:p-7">
+            <div class="flex items-start justify-between gap-4">
+              <span class="flex size-12 items-center justify-center rounded-2xl bg-[#e5eadc] text-[#456047]" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="size-6">
+                  <path d="M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" />
+                  <path d="m8.2 14.6-1 6.4 3.8-2 3.8 2-1-6.4" />
+                </svg>
+              </span>
+              <span class="rounded-full bg-[#f0f1e9] px-3 py-1.5 text-xs font-medium text-[#687469]">Issued Aug 2026</span>
+            </div>
+            <div class="mt-6 flex-1">
+              <h3 class="text-xl font-semibold">Introduction to Safeguarding</h3>
+              <p class="mt-2 text-sm text-[#687469]">Nord Anglia Education</p>
+            </div>
+            <a href={safeguardingCertificate} target="_blank" rel="noreferrer" class="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#20372b] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#456047]">
+              View certificate
+            </a>
+          </article>
+
+          <article class="group flex min-h-64 flex-col rounded-3xl border border-[#20372b]/10 bg-white/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-xl hover:shadow-[#20372b]/5 sm:p-7">
+            <div class="flex items-start justify-between gap-4">
+              <span class="flex size-12 items-center justify-center rounded-2xl bg-[#e5eadc] text-[#456047]" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="size-6">
+                  <path d="M4 5h16v14H4z" />
+                  <path d="M8 9h8M8 13h5" />
+                  <path d="m15 17 2 2 4-4" />
+                </svg>
+              </span>
+              <span class="rounded-full bg-[#f0f1e9] px-3 py-1.5 text-xs font-medium text-[#687469]">Issued May 2026</span>
+            </div>
+            <div class="mt-6 flex-1">
+              <h3 class="text-xl font-semibold">Teaching English to Young Learners</h3>
+              <p class="mt-2 text-sm text-[#687469]">OPEN MOOCs</p>
+            </div>
+            <a href={teachingLearnersCertificate.src} target="_blank" rel="noreferrer" class="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#20372b] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#456047]">
+              View certificate
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <section id="experience" class="scroll-mt-24 py-12 sm:py-16">
+        <div class="mb-10 grid gap-6 border-b border-[#20372b]/15 pb-7 sm:grid-cols-[1fr_auto] sm:items-end sm:pb-9">
+          <div>
+            <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#789257]">
+              <span class="size-2 rounded-full bg-[#789257]" aria-hidden="true"></span>
+              03 / Experience
+            </p>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Where curiosity meets the classroom.</h2>
+          </div>
+          <p class="max-w-sm text-sm leading-6 text-[#687469]">A little timeline of the places where I help young makers build big ideas.</p>
+        </div>
+
+        <div class="relative">
+          <div class="absolute bottom-5 left-5 top-5 z-0 w-px bg-gradient-to-b from-[#789257]/20 via-[#789257] to-[#789257]/20 md:left-1/2" aria-hidden="true"></div>
+          <ol class="space-y-8 md:space-y-10">
+            <li class="relative grid grid-cols-[2.5rem_minmax(0,1fr)] items-start gap-4 md:grid-cols-[minmax(0,1fr)_4rem_minmax(0,1fr)] md:gap-0">
+              <svg class="pointer-events-none absolute left-[17%] top-1/2 z-0 hidden size-28 -translate-y-1/2 text-[#456047] md:block" viewBox="0 0 112 112" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M56 12v10m-5-10h10" />
+                <rect x="31" y="23" width="50" height="42" rx="13" fill="#cfe8b3" />
+                <circle cx="45" cy="42" r="3.5" fill="#456047" />
+                <circle cx="67" cy="42" r="3.5" fill="#456047" />
+                <path d="M45 53q11 8 22 0M40 65v23q16 12 32 0V65M31 70l-9 10 8 7m51-17 9 10-8 7M44 93v8m24-8v8" />
+                <path d="m18 28 3 6 6 2-6 2-3 6-2-6-6-2 6-2 2-6Zm76 34 2 4 4 1-4 2-2 4-1-4-4-2 4-1 1-4Z" fill="#cf9454" stroke="#cf9454" />
+              </svg>
+              <span class="z-10 mt-5 flex size-10 items-center justify-center rounded-full border-4 border-[#f5f3ec] bg-[#789257] text-xs font-bold text-white shadow-[0_0_0_1px_rgba(120,146,87,0.35)] md:col-start-2 md:row-start-1" aria-hidden="true">01</span>
+              <article class="group relative z-10 flex items-center gap-4 rounded-3xl bg-white/75 p-4 pb-16 shadow-sm ring-1 ring-[#20372b]/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#20372b]/10 sm:gap-6 sm:p-6 sm:pb-16 md:col-start-3 md:row-start-1">
+                <div class="flex size-[4.5rem] shrink-0 items-center justify-center rounded-2xl bg-[#eef4e7] p-3 transition-transform duration-300 group-hover:rotate-3 group-hover:scale-105 sm:size-20">
+                  <Image src={snapologyLogo} alt="Snapology logo" class="max-h-full max-w-full object-contain" />
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="text-xs font-semibold uppercase tracking-[0.13em] text-[#789257]">Aug 2026 – Present</p>
+                  <h3 class="mt-2 text-lg font-semibold tracking-tight text-[#20372b] sm:text-xl">Coding Instructor</h3>
+                  <p class="mt-1 text-sm text-[#687469]">Snapology</p>
+                </div>
+                <span class="hidden text-2xl text-[#789257]/40 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-[#789257] sm:block" aria-hidden="true">↗</span>
+                <a href="/experience/snapology/" class="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-[#20372b] px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-[#456047] sm:left-6">
+                  View experience <span aria-hidden="true">→</span>
+                </a>
+              </article>
+            </li>
+
+            <li class="relative grid grid-cols-[2.5rem_minmax(0,1fr)] items-start gap-4 md:grid-cols-[minmax(0,1fr)_4rem_minmax(0,1fr)] md:gap-0">
+              <svg class="pointer-events-none absolute right-[17%] top-1/2 z-0 hidden size-28 -translate-y-1/2 text-[#548a84] md:block" viewBox="0 0 112 112" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="56" cy="54" r="7" fill="#a8d0c6" />
+                <ellipse cx="56" cy="54" rx="39" ry="15" transform="rotate(32 56 54)" />
+                <ellipse cx="56" cy="54" rx="39" ry="15" transform="rotate(-32 56 54)" />
+                <circle cx="87" cy="35" r="4" fill="#cf9454" stroke="#cf9454" />
+                <circle cx="27" cy="73" r="3.5" fill="#9776b2" stroke="#9776b2" />
+                <path d="M21 19h16m-8-8v16M83 83h15m-7-7v15" />
+                <path d="m23 47 2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z" fill="#cfe8b3" stroke="#789257" />
+              </svg>
+              <span class="z-10 mt-5 flex size-10 items-center justify-center rounded-full border-4 border-[#f5f3ec] bg-[#548a84] text-xs font-bold text-white shadow-[0_0_0_1px_rgba(84,138,132,0.35)] md:col-start-2 md:row-start-1" aria-hidden="true">02</span>
+              <article class="group relative z-10 flex items-center gap-4 rounded-3xl bg-white/75 p-4 pb-16 shadow-sm ring-1 ring-[#20372b]/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#20372b]/10 sm:gap-6 sm:p-6 sm:pb-16 md:col-start-1 md:row-start-1 md:flex-row-reverse md:text-right">
+                <div class="flex size-[4.5rem] shrink-0 items-center justify-center rounded-2xl bg-[#e8f2ef] p-3 transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105 sm:size-20">
+                  <Image src={mindxLogo} alt="MindX logo" class="max-h-full max-w-full object-contain" />
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="text-xs font-semibold uppercase tracking-[0.13em] text-[#548a84]">Mar 2026 – Present</p>
+                  <h3 class="mt-2 text-lg font-semibold tracking-tight text-[#20372b] sm:text-xl">Robotics Teacher</h3>
+                  <p class="mt-1 text-sm text-[#687469]">MindX</p>
+                </div>
+                <span class="hidden text-2xl text-[#548a84]/40 transition-transform duration-300 group-hover:-translate-x-1 group-hover:text-[#548a84] sm:block" aria-hidden="true">↖</span>
+                <a href="/experience/mindx/" class="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-[#20372b] px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-[#456047] sm:left-6 md:left-auto md:right-6">
+                  View experience <span aria-hidden="true">→</span>
+                </a>
+              </article>
+            </li>
+
+            <li class="relative grid grid-cols-[2.5rem_minmax(0,1fr)] items-start gap-4 md:grid-cols-[minmax(0,1fr)_4rem_minmax(0,1fr)] md:gap-0">
+              <svg class="pointer-events-none absolute left-[17%] top-1/2 z-0 hidden size-28 -translate-y-1/2 text-[#b77937] md:block" viewBox="0 0 112 112" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m56 15 7 4 8-2 4 7 8 4-1 8 5 7-5 7 1 8-8 4-4 7-8-2-7 4-7-4-8 2-4-7-8-4 1-8-5-7 5-7-1-8 8-4 4-7 8 2 7-4Z" fill="#f1cf9d" />
+                <circle cx="56" cy="47" r="13" />
+                <path d="M56 34v-6m0 38v-6m-13-13h-6m38 0h-6m-22-9-5-5m27 27-5-5m0-17 5-5m-27 27 5-5" />
+                <path d="M42 77h28v18H42zM48 83h16m-16 6h10M56 95v8" />
+                <path d="m21 27 2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z" fill="#cfe8b3" stroke="#789257" />
+                <path d="m91 73 2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z" fill="#e8f2ef" stroke="#548a84" />
+              </svg>
+              <span class="z-10 mt-5 flex size-10 items-center justify-center rounded-full border-4 border-[#f5f3ec] bg-[#cf9454] text-xs font-bold text-white shadow-[0_0_0_1px_rgba(207,148,84,0.35)] md:col-start-2 md:row-start-1" aria-hidden="true">03</span>
+              <article class="group relative z-10 flex items-center gap-4 rounded-3xl bg-white/75 p-4 pb-16 shadow-sm ring-1 ring-[#20372b]/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#20372b]/10 sm:gap-6 sm:p-6 sm:pb-16 md:col-start-3 md:row-start-1">
+                <div class="flex size-[4.5rem] shrink-0 items-center justify-center rounded-2xl bg-[#fbf0e3] p-3 transition-transform duration-300 group-hover:rotate-3 group-hover:scale-105 sm:size-20">
+                  <Image src={tageduLogo} alt="Tagedu logo" class="max-h-full max-w-full object-contain" />
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="text-xs font-semibold uppercase tracking-[0.13em] text-[#b77937]">Dec 2025 – Present</p>
+                  <h3 class="mt-2 text-lg font-semibold tracking-tight text-[#20372b] sm:text-xl">Programming Teacher</h3>
+                  <p class="mt-1 text-sm text-[#687469]">Tagedu</p>
+                </div>
+                <span class="hidden text-2xl text-[#cf9454]/40 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-[#cf9454] sm:block" aria-hidden="true">↗</span>
+                <a href="/experience/tagedu/" class="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-[#20372b] px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-[#456047] sm:left-6">
+                  View experience <span aria-hidden="true">→</span>
+                </a>
+              </article>
+            </li>
+
+            <li class="relative grid grid-cols-[2.5rem_minmax(0,1fr)] items-start gap-4 md:grid-cols-[minmax(0,1fr)_4rem_minmax(0,1fr)] md:gap-0">
+              <svg class="pointer-events-none absolute right-[17%] top-1/2 z-0 hidden size-28 -translate-y-1/2 text-[#9776b2] md:block" viewBox="0 0 112 112" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="18" y="23" width="76" height="52" rx="7" fill="#f1ebf6" />
+                <path d="M26 32h60v34H26zM56 75v12m-13 7h26l-4-8H47l-4 8Z" />
+                <path d="m37 49 8-8m-8 0 8 8m8-5h12m-12 8h20" />
+                <circle cx="79" cy="45" r="3" fill="#789257" stroke="#789257" />
+                <path d="M22 17h12m-6-6v12m58 62h12m-6-6v12" />
+                <path d="m16 83 2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z" fill="#f1cf9d" stroke="#b77937" />
+              </svg>
+              <span class="z-10 mt-5 flex size-10 items-center justify-center rounded-full border-4 border-[#f5f3ec] bg-[#9776b2] text-xs font-bold text-white shadow-[0_0_0_1px_rgba(151,118,178,0.35)] md:col-start-2 md:row-start-1" aria-hidden="true">04</span>
+              <article class="group relative z-10 flex items-center gap-4 rounded-3xl bg-white/75 p-4 pb-16 shadow-sm ring-1 ring-[#20372b]/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#20372b]/10 sm:gap-6 sm:p-6 sm:pb-16 md:col-start-1 md:row-start-1 md:flex-row-reverse md:text-right">
+                <div class="flex size-[4.5rem] shrink-0 items-center justify-center rounded-2xl bg-[#f1ebf6] p-3 transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105 sm:size-20">
+                  <Image src={digiuniLogo} alt="DigiUni logo" class="max-h-full max-w-full object-contain" />
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="text-xs font-semibold uppercase tracking-[0.13em] text-[#9776b2]">Nov 2025 – Apr 2026</p>
+                  <h3 class="mt-2 text-lg font-semibold tracking-tight text-[#20372b] sm:text-xl">STEM Teacher</h3>
+                  <p class="mt-1 text-sm text-[#687469]">DigiUni</p>
+                </div>
+                <span class="hidden text-2xl text-[#9776b2]/40 transition-transform duration-300 group-hover:-translate-x-1 group-hover:text-[#9776b2] sm:block" aria-hidden="true">↖</span>
+                <a href="/experience/digiuni/" class="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-[#20372b] px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-[#456047] sm:left-6 md:left-auto md:right-6">
+                  View experience <span aria-hidden="true">→</span>
+                </a>
+              </article>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="projects" class="scroll-mt-24 py-12 sm:py-16">
+        <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#789257]">04 / Projects</p>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Ideas made tangible.</h2>
+          </div>
+          <p class="max-w-sm text-sm leading-6 text-[#687469]">A space for the projects, classroom ideas, and creative experiments I bring to life.</p>
+        </div>
+
+        <div class="grid gap-5 lg:grid-cols-2">
+          <article class="overflow-hidden rounded-3xl border border-[#20372b]/10 bg-white/75 shadow-sm">
+            <div class="border-b border-[#20372b]/10 bg-[#edf3e6] p-6 sm:p-7">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <span class="rounded-full bg-white/80 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#456047]">UNESCO Youth Hackathon</span>
+                <span class="text-xs font-medium text-[#687469]">Jun 2026 – Oct 2026</span>
+              </div>
+              <h3 class="mt-5 text-xl font-semibold leading-snug tracking-tight sm:text-2xl">FAMIL.AI - UNESCO Youth Hackathon</h3>
+              <p class="mt-3 text-sm leading-7 text-[#687469]">
+                Collaborated on FAMIL.AI, combining family media literacy and AI in a board game and web app that encourage critical thinking.
+              </p>
+              <p class="mt-4 rounded-xl bg-white/75 px-4 py-3 text-sm font-semibold text-[#456047]">Board game · Web application · Family media literacy</p>
+              <a href="/blog/famil_ai_blog/" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#456047] underline decoration-[#456047]/30 underline-offset-4 transition-colors hover:text-[#20372b]">
+                Read the project story <span aria-hidden="true">→</span>
+              </a>
+            </div>
+            <div class="p-4 sm:p-6">
+              <figure class="group relative aspect-[1.45] overflow-hidden rounded-2xl bg-white ring-1 ring-[#20372b]/10">
+                <iframe
+                  src={`${unescoCertificate}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                  title="FAMIL.AI UNESCO Youth Hackathon certificate"
+                  class="pointer-events-none absolute inset-0 size-full bg-white"
+                  loading="lazy"
+                ></iframe>
+                <button
+                  type="button"
+                  data-project-certificate
+                  data-certificate-url={unescoCertificate}
+                  data-certificate-title="FAMIL.AI - UNESCO Youth Hackathon certificate"
+                  aria-label="Enlarge FAMIL.AI UNESCO Youth Hackathon certificate"
+                  class="absolute inset-0 z-10 cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#456047]"
+                ></button>
+                <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[#12231b]/75 to-transparent px-4 pb-4 pt-12 text-xs font-semibold text-white">
+                  Click to enlarge certificate
+                </figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="overflow-hidden rounded-3xl border border-[#20372b]/10 bg-white/75 shadow-sm">
+            <div class="border-b border-[#20372b]/10 bg-[#eaf0fb] p-6 sm:p-7">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <span class="rounded-full bg-white/80 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#45618a]">AI Riser Vietnam</span>
+                <span class="text-xs font-medium text-[#687469]">Jul 2026 – Oct 2026</span>
+              </div>
+              <h3 class="mt-5 text-xl font-semibold leading-snug tracking-tight sm:text-2xl">Ramify – AI-Powered IELTS Writing Assistant</h3>
+              <p class="mt-3 text-sm leading-7 text-[#687469]">
+                Created an AI-powered IELTS Writing Task 2 assistant that helps learners brainstorm, develop, and organize ideas with interactive mind mapping.
+              </p>
+              <p class="mt-4 rounded-xl bg-white/75 px-4 py-3 text-sm font-semibold text-[#45618a]">“Branch Out Your Ideas, Master Your IELTS.”</p>
+              <a href="/blog/ramify/" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#45618a] underline decoration-[#45618a]/30 underline-offset-4 transition-colors hover:text-[#20372b]">
+                Read the project story <span aria-hidden="true">→</span>
+              </a>
+            </div>
+            <div class="p-4 sm:p-6">
+              <figure class="group relative aspect-[1.45] overflow-hidden rounded-2xl bg-white ring-1 ring-[#20372b]/10">
+                <iframe
+                  src={`${aiRiserCertificate}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                  title="Ramify AI Riser Vietnam certificate"
+                  class="pointer-events-none absolute inset-0 size-full bg-white"
+                  loading="lazy"
+                ></iframe>
+                <button
+                  type="button"
+                  data-project-certificate
+                  data-certificate-url={aiRiserCertificate}
+                  data-certificate-title="Ramify - AI Riser Vietnam certificate"
+                  aria-label="Enlarge Ramify AI Riser certificate"
+                  class="absolute inset-0 z-10 cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#45618a]"
+                ></button>
+                <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[#12231b]/75 to-transparent px-4 pb-4 pt-12 text-xs font-semibold text-white">
+                  Click to enlarge certificate
+                </figcaption>
+              </figure>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <dialog
+        id="certificate-lightbox"
+        aria-label="Expanded certificate"
+        class="fixed inset-0 m-0 h-dvh max-h-none w-screen max-w-none border-0 bg-black/90 p-3 text-white backdrop:bg-black/80 sm:p-6"
+      >
+        <div class="flex h-full w-full flex-col gap-3">
+          <div class="flex items-center justify-between gap-4">
+            <p data-certificate-title class="text-sm font-medium text-white/85"></p>
+            <button
+              type="button"
+              data-close-certificate
+              class="flex size-11 shrink-0 items-center justify-center rounded-full bg-white/15 text-2xl leading-none text-white transition-colors hover:bg-white/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              aria-label="Close expanded certificate"
+            >
+              &times;
+            </button>
+          </div>
+          <iframe data-certificate-frame title="Expanded certificate" class="min-h-0 flex-1 rounded-xl bg-white"></iframe>
+        </div>
+      </dialog>
+
+      <section id="awards" class="scroll-mt-24 py-12 sm:py-16">
+        <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#789257]">05 / Awards</p>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Recognition worth sharing.</h2>
+          </div>
+          <p class="max-w-sm text-sm leading-6 text-[#687469]">Milestones from media, education, and climate innovation.</p>
+        </div>
+
+        <div class="grid gap-5 lg:grid-cols-2">
+          <article class="overflow-hidden rounded-3xl border border-[#20372b]/10 bg-white/70 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#20372b]/5">
+            <div class="border-b border-[#20372b]/10 bg-[#edf3e6] p-6 sm:p-7">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <span class="rounded-full bg-white/80 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#456047]">Media &amp; wellbeing</span>
+                <span class="text-xs font-medium text-[#687469]">Mar 2019</span>
+              </div>
+              <h3 class="mt-5 text-xl font-semibold leading-snug tracking-tight sm:text-2xl">Encouragement Prize in the Media Competition “SMILE AFTER WORK”</h3>
+              <p class="mt-3 text-sm leading-6 text-[#687469]">Issued by SafeYouth@Work Project, ILO</p>
+            </div>
+
+            <div class="p-4 sm:p-6">
+              <figure class="group relative overflow-hidden rounded-2xl bg-white ring-1 ring-[#20372b]/10">
+                <Image
+                  src={iloCertificate}
+                  alt="Encouragement Prize certificate for the SMILE AFTER WORK media competition, issued by SafeYouth@Work Project and ILO"
+                  class="pointer-events-none aspect-[1.45] w-full object-contain p-2 transition-transform duration-500 group-hover:scale-[1.02] sm:p-4"
+                  loading="lazy"
+                />
+                <button
+                  type="button"
+                  data-award-lightbox
+                  aria-label="Enlarge ILO SMILE AFTER WORK award certificate"
+                  class="absolute inset-0 z-10 cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#456047]"
+                ></button>
+                <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[#12231b]/75 to-transparent px-4 pb-4 pt-12 text-xs font-semibold text-white">
+                  Click to enlarge certificate
+                </figcaption>
+              </figure>
+              <div class="mt-4 flex flex-col gap-4 rounded-2xl bg-[#f5f3ec] p-5 sm:flex-row sm:items-center sm:justify-between">
+                <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#789257]">The story</p>
+                <div class="sm:ml-auto sm:text-right">
+                  <h4 class="font-semibold">Behind “SMILE AFTER WORK”</h4>
+                  <p class="mt-1 text-sm leading-6 text-[#687469]">Blog post link coming soon</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="overflow-hidden rounded-3xl border border-[#20372b]/10 bg-white/70 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#20372b]/5">
+            <div class="border-b border-[#20372b]/10 bg-[#f1ebf6] p-6 sm:p-7">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <span class="rounded-full bg-white/80 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#785b94]">Climate &amp; education</span>
+                <span class="text-xs font-medium text-[#687469]">Oct 2026</span>
+              </div>
+              <h3 class="mt-5 text-xl font-semibold leading-snug tracking-tight sm:text-2xl">Teacher Finalist of Oxford Climate Tech Challenge 2026</h3>
+              <p class="mt-3 text-sm leading-6 text-[#687469]">Issued by Saïd Business School, University of Oxford</p>
+            </div>
+
+            <div class="p-4 sm:p-6">
+              <div class="relative aspect-[1.45] overflow-hidden rounded-2xl bg-white ring-1 ring-[#20372b]/10">
+                <iframe
+                  src={`${oxfordCertificate}#toolbar=0&navpanes=0&scrollbar=0&view=Fit`}
+                  title="Oxford Climate Tech Challenge 2026 certificate preview"
+                  class="pointer-events-none absolute inset-0 size-full bg-white"
+                  loading="lazy"
+                ></iframe>
+                <button
+                  type="button"
+                  data-oxford-certificate-open
+                  aria-label="Open Oxford Climate Tech Challenge certificate fullscreen"
+                  class="absolute inset-0 z-10 cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#785b94]"
+                ></button>
+                <p class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[#12231b]/75 to-transparent px-4 pb-4 pt-12 text-xs font-semibold text-white">
+                  Click to enlarge certificate
+                </p>
+              </div>
+              <div class="mt-4 flex flex-col gap-4 rounded-2xl bg-[#f5f3ec] p-5 sm:flex-row sm:items-center sm:justify-between">
+                <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#9776b2]">The story</p>
+                <div class="sm:ml-auto sm:text-right">
+                  <h4 class="font-semibold">Teaching climate technology</h4>
+                  <p class="mt-1 text-sm leading-6 text-[#687469]">Blog post link coming soon</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <dialog
+        id="award-certificate-lightbox"
+        aria-label="Expanded ILO award certificate"
+        class="fixed inset-0 m-0 h-dvh max-h-none w-screen max-w-none border-0 bg-black/90 p-4 text-white backdrop:bg-black/80 sm:p-8"
+      >
+        <div class="flex h-full w-full flex-col items-center justify-center gap-3">
+          <button
+            type="button"
+            data-close-award-lightbox
+            class="absolute right-4 top-4 z-10 flex size-11 items-center justify-center rounded-full bg-white/15 text-2xl leading-none text-white transition-colors hover:bg-white/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-8 sm:top-8"
+            aria-label="Close expanded certificate"
+          >
+            &times;
+          </button>
+          <img
+            data-award-lightbox-image
+            class="max-h-[85vh] max-w-full rounded-xl object-contain shadow-2xl"
+            alt=""
+          />
+          <p class="text-center text-sm font-medium text-white/85">ILO “SMILE AFTER WORK” Encouragement Prize certificate</p>
+        </div>
+      </dialog>
+
+      <dialog
+        id="oxford-certificate-lightbox"
+        aria-label="Expanded Oxford Climate Tech Challenge certificate"
+        class="fixed inset-0 m-0 h-dvh max-h-none w-screen max-w-none border-0 bg-black/90 p-3 text-white backdrop:bg-black/80 sm:p-6"
+      >
+        <button
+          type="button"
+          data-close-oxford-lightbox
+          class="absolute right-4 top-4 z-10 flex size-11 items-center justify-center rounded-full bg-black/60 text-2xl leading-none text-white transition-colors hover:bg-black/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-8 sm:top-8"
+          aria-label="Close expanded certificate"
+        >
+          &times;
+        </button>
+        <iframe
+          src={oxfordCertificate}
+          title="Oxford Climate Tech Challenge 2026 certificate"
+          class="h-full w-full rounded-xl bg-white"
+        ></iframe>
+      </dialog>
+
+      <section id="blog" class="scroll-mt-24 py-12 sm:py-16">
+        <div class="border-t border-[#20372b]/15 pt-10 sm:pt-14">
+          <div class="flex flex-wrap items-end justify-between gap-5">
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#789257]">06 / Journal</p>
+              <h2 class="mt-3 max-w-xl text-3xl font-semibold tracking-tight sm:text-4xl">Projects, reflections, and discoveries.</h2>
+              <p class="mt-4 max-w-lg text-sm leading-7 text-[#596a5c]">
+                Reflections, ideas, and little discoveries about teaching, learning, and making with technology.
+              </p>
+            </div>
+            <p class="pb-1 text-sm font-medium text-[#687469]">
+              {blogPosts.length} {blogPosts.length === 1 ? "story" : "stories"}
+            </p>
+          </div>
+          {blogPosts.length > 0 ? (
+            <div class="mt-8 grid gap-5 md:grid-cols-2">
+              {blogPosts.map((post) => (
+                <a href={`/blog/${post.id}/`} class="group overflow-hidden rounded-2xl bg-white ring-1 ring-[#20372b]/10 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-[#20372b]/10">
+                  {(() => {
+                    const translation = localizedBlogPosts.get(post.data.translationKey ?? post.id);
+                    return (
+                      <>
+                  {post.data.coverImage && (
+                    <div class="aspect-[16/10] overflow-hidden bg-[#e5eadc]">
+                      <img
+                        src={post.data.coverImage}
+                        alt={post.data.title}
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <div class="p-5 sm:p-6">
+                    <div class="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#789257]">
+                      {post.data.category && <span>{post.data.category}</span>}
+                      {post.data.category && post.data.pubDate && <span aria-hidden="true">·</span>}
+                      {post.data.pubDate && (
+                        <time datetime={post.data.pubDate.toISOString()}>
+                          {post.data.pubDate.toLocaleDateString("en", { year: "numeric", month: "short", day: "numeric" })}
+                        </time>
+                      )}
+                    </div>
+                    <h3 class="mt-3 text-lg font-semibold leading-snug text-[#20372b] transition-colors group-hover:text-[#456047]">
+                      <span data-language-content="en">{post.data.title}</span>
+                      {translation && <span data-language-content="vi" hidden>{translation.data.title}</span>}
+                    </h3>
+                    <p class="mt-2 text-sm leading-6 text-[#687469]">
+                      <span data-language-content="en">{post.data.description}</span>
+                      {translation && <span data-language-content="vi" hidden>{translation.data.description}</span>}
+                    </p>
+                    <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#456047]">
+                      Read story <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
+                    </span>
+                  </div>
+                      </>
+                    );
+                  })()}
+                </a>
+              ))}
+            </div>
+          ) : (
+            <p class="mt-8 rounded-2xl bg-white/65 p-5 text-sm leading-6 text-[#596a5c]">
+              No stories yet. Add a Markdown file to <code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs">src/content/blog/</code> to publish your first post.
+            </p>
+          )}
+        </div>
+      </section>
+
+      <section id="contact" class="scroll-mt-24 py-12 sm:py-16">
+        <div class="rounded-[2rem] bg-[#20372b] p-7 text-white sm:p-10 lg:p-12">
+          <div class="max-w-2xl">
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#cfe8b3]">07 / Contact</p>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Let’s make learning memorable.</h2>
+            <p class="mt-4 text-sm leading-7 text-white/70 sm:text-base">
+              Have a teaching opportunity, collaboration, or a fun idea to share? I’d love to hear from you.
+            </p>
+          </div>
+
+          <div class="mt-8 grid gap-3 sm:grid-cols-3">
+            <a
+              href="https://www.linkedin.com/in/phuong-pham-/"
+              target="_blank"
+              rel="noreferrer"
+              class="group flex items-center gap-4 rounded-2xl border border-white/15 bg-white/5 p-4 transition-colors hover:border-[#cfe8b3]/60 hover:bg-white/10"
+              aria-label="Connect with Phuong Pham on LinkedIn"
+            >
+              <span class="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#cfe8b3] text-[#20372b]" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="size-6 fill-current" focusable="false">
+                  <path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.7H4.97V9.16h2.96v9.54ZM6.45 7.86a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44Zm12.26 10.84h-2.95v-4.64c0-1.11-.02-2.54-1.55-2.54-1.55 0-1.79 1.21-1.79 2.46v4.72H9.47V9.16h2.83v1.3h.04c.39-.75 1.36-1.55 2.8-1.55 3 0 3.57 1.97 3.57 4.54v5.25Z" />
+                </svg>
+              </span>
+              <span class="min-w-0">
+                <span class="block text-xs font-medium uppercase tracking-[0.12em] text-white/55">LinkedIn</span>
+                <span class="mt-1 block truncate text-sm font-semibold">Connect with me</span>
+              </span>
+              <span class="ml-auto text-white/50 transition-transform group-hover:translate-x-1 group-hover:text-[#cfe8b3]" aria-hidden="true">↗</span>
+            </a>
+
+            <a
+              href="tel:+84708259673"
+              class="group flex items-center gap-4 rounded-2xl border border-white/15 bg-white/5 p-4 transition-colors hover:border-[#cfe8b3]/60 hover:bg-white/10"
+              aria-label="Call Phuong Pham at plus 84 708 259 673"
+            >
+              <span class="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#cfe8b3] text-[#20372b]" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="size-6 fill-none stroke-current" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                  <path d="M7.2 3.5h2.6l1.3 4.1-1.8 1.7a15.1 15.1 0 0 0 5.4 5.4l1.7-1.8 4.1 1.3v2.6a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 5.2 5.7a2 2 0 0 1 2-2.2Z" />
+                </svg>
+              </span>
+              <span class="min-w-0">
+                <span class="block text-xs font-medium uppercase tracking-[0.12em] text-white/55">Phone</span>
+                <span class="mt-1 block truncate text-sm font-semibold">+84 708 259 673</span>
+              </span>
+              <span class="ml-auto text-white/50 transition-transform group-hover:translate-x-1 group-hover:text-[#cfe8b3]" aria-hidden="true">↗</span>
+            </a>
+
+            <a
+              href="mailto:pqphuonghcm@gmail.com"
+              class="group flex items-center gap-4 rounded-2xl border border-white/15 bg-white/5 p-4 transition-colors hover:border-[#cfe8b3]/60 hover:bg-white/10"
+              aria-label="Email Phuong Pham at pqphuonghcm@gmail.com"
+            >
+              <span class="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#cfe8b3] text-[#20372b]" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="size-6 fill-none stroke-current" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="m4 7 8 6 8-6" />
+                </svg>
+              </span>
+              <span class="min-w-0">
+                <span class="block text-xs font-medium uppercase tracking-[0.12em] text-white/55">Email</span>
+                <span class="mt-1 block truncate text-sm font-semibold">pqphuonghcm@gmail.com</span>
+              </span>
+              <span class="ml-auto text-white/50 transition-transform group-hover:translate-x-1 group-hover:text-[#cfe8b3]" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="mt-8 flex flex-col justify-between gap-3 border-t border-[#20372b]/10 py-6 text-xs text-[#687469] sm:flex-row sm:items-center">
+        <a href="#about" class="font-semibold tracking-wide text-[#20372b]">PHUONG PHAM</a>
+        <p>Teaching curiosity, one project at a time.</p>
+        <a href="#about" class="transition-colors hover:text-[#20372b]">Back to top ↑</a>
+      </footer>
+    </main>
+    <script>
+      const awardLightbox = document.querySelector<HTMLDialogElement>("#award-certificate-lightbox");
+      const awardLightboxImage = document.querySelector<HTMLImageElement>("[data-award-lightbox-image]");
+      const oxfordLightbox = document.querySelector<HTMLDialogElement>("#oxford-certificate-lightbox");
+      const certificateLightbox = document.querySelector<HTMLDialogElement>("#certificate-lightbox");
+      const certificateFrame = document.querySelector<HTMLIFrameElement>("[data-certificate-frame]");
+      const certificateTitle = document.querySelector<HTMLParagraphElement>("[data-certificate-title]");
+
+      if (awardLightbox && awardLightboxImage) {
+        document.querySelectorAll<HTMLButtonElement>("[data-award-lightbox]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const certificate = button.parentElement?.querySelector("img");
+            if (!certificate) return;
+
+            awardLightboxImage.src = certificate.currentSrc || certificate.src;
+            awardLightboxImage.alt = certificate.alt;
+            awardLightbox.showModal();
+          });
+        });
+
+        awardLightbox.querySelector("[data-close-award-lightbox]")?.addEventListener("click", () => {
+          awardLightbox.close();
+        });
+        awardLightbox.addEventListener("click", (event) => {
+          if (event.target === awardLightbox) awardLightbox.close();
+        });
+      }
+
+      if (oxfordLightbox) {
+        document.querySelector<HTMLButtonElement>("[data-oxford-certificate-open]")?.addEventListener("click", () => {
+          oxfordLightbox.showModal();
+        });
+        oxfordLightbox.querySelector("[data-close-oxford-lightbox]")?.addEventListener("click", () => {
+          oxfordLightbox.close();
+        });
+        oxfordLightbox.addEventListener("click", (event) => {
+          if (event.target === oxfordLightbox) oxfordLightbox.close();
+        });
+      }
+
+      if (certificateLightbox && certificateFrame && certificateTitle) {
+        document.querySelectorAll<HTMLButtonElement>("[data-certificate-open], [data-project-certificate]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const certificateUrl = button.dataset.certificateUrl;
+            const title = button.dataset.certificateTitle;
+            if (!certificateUrl || !title) return;
+
+            certificateFrame.src = certificateUrl;
+            certificateFrame.title = title;
+            certificateTitle.textContent = title;
+            certificateLightbox.showModal();
+          });
+        });
+
+        const closeCertificate = () => {
+          certificateLightbox.close();
+          certificateFrame.removeAttribute("src");
+        };
+
+        certificateLightbox.querySelector("[data-close-certificate]")?.addEventListener("click", closeCertificate);
+        certificateLightbox.addEventListener("click", (event) => {
+          if (event.target === certificateLightbox) closeCertificate();
+        });
+        certificateLightbox.addEventListener("close", () => {
+          certificateFrame.removeAttribute("src");
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+---
+title: "Your blog post title"
+description: "A short summary that appears on the homepage."
+pubDate: 2026-11-07
+category: "Teaching"
+draft: true
+---
+
+Write your post here using Markdown.
+
+## Add a section
+
+Write paragraphs, add headings, or make lists:
+
+- First idea
+- Second idea
+
+To add an image, put it in `public/images/blog/` and use:
+
+![Describe the image](/images/blog/your-image.jpg)
+
+When the post is ready, change `draft: true` to `draft: false`.
+
+For a Vietnamese version, create a sibling file named `<post-name>.vi.md`.
+Copy the post's frontmatter, translate its title, description, and content, then
+add these fields:
+
+```yaml
+language: "vi"
+translationKey: "<post-name>"
+```
+
+Keep the English post's filename as `<post-name>.md`. The Vietnamese file is
+paired with it and does not appear as a separate post.

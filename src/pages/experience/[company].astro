@@ -1,0 +1,614 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import snapologyLogo from "../../assets/Snapology.png";
+import mindxLogo from "../../assets/Mindx.png";
+import tageduLogo from "../../assets/TagEdu.png";
+import digiuniLogo from "../../assets/digiuni.png";
+import aisPhoto from "../../assets/AIS.jpg";
+import fairPhoto from "../../assets/Fair.jpg";
+import fairPhoto1 from "../../assets/Fair 1.jpg";
+import fairPhoto2 from "../../assets/Fair 2.jpg";
+import fairPhoto3 from "../../assets/Fair 3.jpg";
+import mindxPhoto from "../../assets/mindx.jpg";
+import mindxPhoto1 from "../../assets/mindx1.jpg";
+import mindxPhoto2 from "../../assets/mindx2.jpg";
+import tageduPhoto from "../../assets/tagedu.jpg";
+import safeguardingPhoto1 from "../../assets/safe_guarding1.jpg";
+import safeguardingPhoto2 from "../../assets/safe_guarding2.jpg";
+import "../../styles/global.css";
+import LanguageSwitch from "../../components/LanguageSwitch.astro";
+
+type Experience = {
+  company: string;
+  role: string;
+  dates: string;
+  logo: ImageMetadata;
+  accent: string;
+  logoBackground: string;
+};
+
+export function getStaticPaths() {
+  return [
+    {
+      params: { company: "snapology" },
+      props: {
+        experience: {
+          company: "Snapology",
+          role: "Coding Instructor",
+          dates: "Aug 2026 – Present",
+          logo: snapologyLogo,
+          accent: "#789257",
+          logoBackground: "#eef4e7",
+        },
+      },
+    },
+    {
+      params: { company: "mindx" },
+      props: {
+        experience: {
+          company: "MindX",
+          role: "Robotics Teacher",
+          dates: "Mar 2026 – Present",
+          logo: mindxLogo,
+          accent: "#548a84",
+          logoBackground: "#e8f2ef",
+        },
+      },
+    },
+    {
+      params: { company: "tagedu" },
+      props: {
+        experience: {
+          company: "Tagedu",
+          role: "Programming Teacher",
+          dates: "Dec 2025 – Present",
+          logo: tageduLogo,
+          accent: "#b77937",
+          logoBackground: "#fbf0e3",
+        },
+      },
+    },
+    {
+      params: { company: "digiuni" },
+      props: {
+        experience: {
+          company: "DigiUni",
+          role: "STEM Teacher",
+          dates: "Nov 2025 – Apr 2026",
+          logo: digiuniLogo,
+          accent: "#9776b2",
+          logoBackground: "#f1ebf6",
+        },
+      },
+    },
+  ];
+}
+
+const { experience } = Astro.props as { experience: Experience };
+const fairPhotos = [
+  { src: fairPhoto, alt: "Demonstrating a hands-on STEAM activity at the Snapology fair", label: "At the booth" },
+  { src: fairPhoto1, alt: "The Snapology team at a STEAM fair", label: "The team" },
+  { src: fairPhoto2, alt: "A hands-on Snapology STEAM fair activity", label: "Hands-on learning" },
+  { src: fairPhoto3, alt: "Visitors exploring a Snapology STEAM display", label: "STEAM in action" },
+];
+const mindxDemos = [
+  {
+    src: mindxPhoto,
+    alt: "MindX robotics students presenting their robot models",
+    title: "Learning through robotics",
+    videoId: "TiYALkVmPV8",
+  },
+  {
+    src: mindxPhoto1,
+    alt: "A group of young MindX robotics students celebrating their progress",
+    title: "A classroom of young makers",
+    videoId: "bdtB7cS7Fqg",
+  },
+  {
+    src: mindxPhoto2,
+    alt: "Young learners with their robotics course certificates",
+    title: "Celebrating learner progress",
+    videoId: "ti4bMmkLlZM",
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#f5f3ec" />
+    <meta
+      name="description"
+      content={`${experience.role} at ${experience.company} — experience of Phuong Pham.`}
+    />
+    <title>{experience.role} at {experience.company} — Phuong Pham</title>
+  </head>
+  <body class="bg-[#f5f3ec] text-[#20372b] antialiased">
+    <main class="mx-auto min-h-screen max-w-5xl px-5 sm:px-8">
+      <header class="flex items-center justify-between gap-4 py-5">
+        <a href="/" class="group flex items-center gap-3" aria-label="Phuong Pham, home">
+          <span class="flex size-10 items-center justify-center rounded-full bg-[#20372b] text-lg font-semibold text-[#cfe8b3] transition-transform group-hover:rotate-12">P</span>
+          <span class="text-sm font-semibold tracking-wide">PHUONG PHAM</span>
+        </a>
+        <a href="/#experience" class="inline-flex items-center gap-2 rounded-full border border-[#20372b]/15 px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-white">
+          <span aria-hidden="true">←</span>
+          All experience
+        </a>
+        <LanguageSwitch />
+      </header>
+
+      <section class="py-10 sm:py-16">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em]" style={`color: ${experience.accent}`}>
+          Experience / {experience.company}
+        </p>
+        <div class="mt-5 grid gap-8 rounded-[2rem] bg-white/75 p-6 shadow-sm ring-1 ring-[#20372b]/5 sm:p-10 md:grid-cols-[1fr_auto] md:items-center">
+          <div>
+            <p class="text-sm font-medium text-[#687469]">{experience.dates}</p>
+            <h1 class="mt-3 text-4xl font-semibold tracking-tight sm:text-6xl">{experience.role}</h1>
+            <p class="mt-3 text-lg text-[#687469]">{experience.company}</p>
+          </div>
+          <div class="flex size-28 items-center justify-center rounded-3xl p-5 sm:size-36" style={`background-color: ${experience.logoBackground}`}>
+            <Image src={experience.logo} alt={`${experience.company} logo`} class="max-h-full max-w-full object-contain" />
+          </div>
+        </div>
+      </section>
+
+      <section class="pb-16 sm:pb-24">
+        <div class="rounded-[2rem] border border-[#20372b]/10 bg-white/45 p-6 sm:p-10">
+          {experience.company === "Snapology" ? (
+            <>
+              <p class="text-xs font-semibold uppercase tracking-[0.2em]" style={`color: ${experience.accent}`}>Inside the classroom</p>
+              <h2 class="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">Curiosity, code &amp; hands-on learning.</h2>
+              <p class="mt-4 max-w-2xl text-sm leading-7 text-[#687469] sm:text-base">
+                From Python lessons to STEAM events, I help students turn big ideas into things they can build, test, and share.
+              </p>
+
+              <div class="mt-10 grid gap-6 md:grid-cols-2 md:items-center">
+                <figure class="group relative overflow-hidden rounded-[1.5rem] bg-[#e8ede3]">
+                  <Image
+                    src={aisPhoto}
+                    alt="Teaching Python to secondary students at AIS"
+                    class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    loading="lazy"
+                  />
+                  <button
+                    type="button"
+                    data-experience-lightbox
+                    aria-label="Enlarge AIS training photo"
+                    class="absolute inset-0 z-10 cursor-zoom-in rounded-[1.5rem] focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-white"
+                  ></button>
+                  <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-2 bg-gradient-to-t from-[#12231b]/80 to-transparent px-4 pb-4 pt-10 text-xs font-semibold text-white">
+                    <span data-experience-caption>Teaching Python at AIS</span>
+                  </figcaption>
+                </figure>
+                <article class="rounded-[1.5rem] bg-white p-6 sm:p-8">
+                  <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#789257]">01 / Teach</p>
+                  <h3 class="mt-3 text-2xl font-semibold tracking-tight">Python for secondary students</h3>
+                  <p class="mt-4 text-sm leading-7 text-[#687469]">
+                    Designed and taught Python lessons for secondary students at AIS, making programming concepts approachable through clear explanations and hands-on practice. Guided learners as they wrote code, tested ideas, and built confidence solving problems step by step.
+                  </p>
+                  <div class="mt-6 flex flex-wrap gap-2">
+                    <span class="rounded-full bg-[#f5f3ec] px-3 py-1.5 text-xs font-medium">Python</span>
+                    <span class="rounded-full bg-[#f5f3ec] px-3 py-1.5 text-xs font-medium">Secondary learners</span>
+                    <span class="rounded-full bg-[#f5f3ec] px-3 py-1.5 text-xs font-medium">Learning by doing</span>
+                  </div>
+                </article>
+              </div>
+
+              <article class="mt-8 overflow-hidden rounded-[1.5rem] bg-[#20372b] text-white">
+                <div class="grid md:grid-cols-[0.8fr_1.2fr]">
+                  <div class="flex flex-col justify-center p-6 sm:p-8">
+                    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#cfe8b3]">02 / Connect</p>
+                    <h3 class="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">STEAM teaching at the fair</h3>
+                    <p class="mt-4 text-sm leading-7 text-white/75">
+                      Brought Snapology’s hands-on STEAM activities to a fair, introducing visitors to creative building, robotics, and engineering. Encouraged learners to experiment, ask questions, and discover the ideas behind each activity.
+                    </p>
+                    <p class="mt-6 text-xs font-medium uppercase tracking-[0.15em] text-[#cfe8b3]">Explore · Build · Experiment</p>
+                  </div>
+                  <div class="grid grid-cols-2 gap-3 p-4 sm:gap-4 sm:p-6">
+                    {fairPhotos.map((photo) => (
+                      <figure class="group relative aspect-[4/3] overflow-hidden rounded-xl bg-white/10">
+                        <Image
+                          src={photo.src}
+                          alt={photo.alt}
+                          class="pointer-events-none h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                          loading="lazy"
+                        />
+                        <button
+                          type="button"
+                          data-experience-lightbox
+                          aria-label={`Enlarge ${photo.label} photo`}
+                          class="absolute inset-0 z-10 cursor-zoom-in rounded-xl focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-white"
+                        ></button>
+                        <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-2 bg-gradient-to-t from-[#12231b]/90 to-transparent px-3 pb-3 pt-10 text-[11px] font-semibold text-white sm:px-4 sm:pb-4 sm:text-sm">
+                          <span data-experience-caption>{photo.label}</span>
+                        </figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                </div>
+              </article>
+
+              <div class="mt-8 grid gap-6 lg:grid-cols-2">
+                <article class="rounded-[1.5rem] bg-[#e8ede3] p-6 sm:p-8">
+                  <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#789257]">03 / Design</p>
+                  <h3 class="mt-3 text-2xl font-semibold tracking-tight">Build thoughtful lesson plans</h3>
+                  <p class="mt-4 text-sm leading-7 text-[#566458]">
+                    Created structured lesson plans around clear learning goals, age-appropriate challenges, and practical builds. Sequenced each session from introduction to hands-on exploration, with room for students to test, troubleshoot, and reflect.
+                  </p>
+                  <div class="mt-6 grid grid-cols-3 gap-2 text-center text-xs font-semibold text-[#20372b]">
+                    <div class="rounded-xl bg-white/75 p-3">01<br /><span class="mt-1 inline-block font-medium text-[#687469]">Discover</span></div>
+                    <div class="rounded-xl bg-white/75 p-3">02<br /><span class="mt-1 inline-block font-medium text-[#687469]">Create</span></div>
+                    <div class="rounded-xl bg-white/75 p-3">03<br /><span class="mt-1 inline-block font-medium text-[#687469]">Reflect</span></div>
+                  </div>
+                </article>
+
+                <article class="rounded-[1.5rem] bg-white p-6 sm:p-8">
+                  <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#789257]">04 / Support</p>
+                  <h3 class="mt-3 text-2xl font-semibold tracking-tight">ECA &amp; safeguarding training</h3>
+                  <p class="mt-4 text-sm leading-7 text-[#687469]">
+                    Took part in ECA and safeguarding training to strengthen my practice in creating safe, inclusive learning environments. Applied that awareness when supporting students, communicating expectations, and helping every learner feel ready to participate.
+                  </p>
+                  <div class="mt-6 grid grid-cols-2 gap-3">
+                    <figure class="group relative overflow-hidden rounded-xl">
+                      <Image
+                        src={safeguardingPhoto1}
+                        alt="Certificate of participation in external CCA provider induction and training"
+                        class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                        loading="lazy"
+                      />
+                      <button
+                        type="button"
+                        data-experience-lightbox
+                        aria-label="Enlarge ECA training certificate photo"
+                        class="absolute inset-0 z-10 cursor-zoom-in rounded-xl focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-white"
+                      ></button>
+                      <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[#12231b]/80 to-transparent px-3 pb-3 pt-8 text-[11px] font-semibold text-white">
+                        <span data-experience-caption>ECA training</span>
+                      </figcaption>
+                    </figure>
+                    <figure class="group relative overflow-hidden rounded-xl">
+                      <Image
+                        src={safeguardingPhoto2}
+                        alt="Safeguarding and ECA training materials"
+                        class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                        loading="lazy"
+                      />
+                      <button
+                        type="button"
+                        data-experience-lightbox
+                        aria-label="Enlarge safeguarding training photo"
+                        class="absolute inset-0 z-10 cursor-zoom-in rounded-xl focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-white"
+                      ></button>
+                      <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[#12231b]/80 to-transparent px-3 pb-3 pt-8 text-[11px] font-semibold text-white">
+                        <span data-experience-caption>Safeguarding</span>
+                      </figcaption>
+                    </figure>
+                  </div>
+                </article>
+              </div>
+            </>
+          ) : experience.company === "MindX" ? (
+            <>
+              <p class="text-xs font-semibold uppercase tracking-[0.2em]" style={`color: ${experience.accent}`}>Little learners, big ideas</p>
+              <h2 class="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">Robotics made for curious minds.</h2>
+              <p class="mt-4 max-w-3xl text-sm leading-7 text-[#687469] sm:text-base">
+                I teach and guide preschool children aged 3.5–6 as they explore technology through hands-on robotics models and beginner-friendly programming.
+              </p>
+
+              <div class="mt-8 grid gap-4 sm:grid-cols-3">
+                <div class="rounded-2xl bg-white p-5">
+                  <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#548a84]">Learners</p>
+                  <p class="mt-2 text-lg font-semibold">Ages 3.5–6</p>
+                  <p class="mt-1 text-sm leading-6 text-[#687469]">Activities adapted for early learners.</p>
+                </div>
+                <div class="rounded-2xl bg-white p-5">
+                  <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#548a84]">Explore</p>
+                  <p class="mt-2 text-lg font-semibold">Robotics &amp; code</p>
+                  <p class="mt-1 text-sm leading-6 text-[#687469]">Discover how models respond to simple instructions.</p>
+                </div>
+                <div class="rounded-2xl bg-white p-5">
+                  <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#548a84]">Grow</p>
+                  <p class="mt-2 text-lg font-semibold">Logic &amp; creativity</p>
+                  <p class="mt-1 text-sm leading-6 text-[#687469]">Build confidence by trying, adjusting, and creating.</p>
+                </div>
+              </div>
+
+              <article class="mt-8 rounded-[1.5rem] bg-white p-6 sm:p-8">
+                  <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#548a84]">What I do</p>
+                  <h3 class="mt-3 text-2xl font-semibold tracking-tight">Making technology click through play</h3>
+                  <p class="mt-4 text-sm leading-7 text-[#687469]">
+                    I introduce young learners to technology with approachable robot-building activities and basic programming concepts. During each lesson, I demonstrate the task in small steps, guide children as they assemble and explore their models, and encourage them to try simple instructions and observe what happens.
+                  </p>
+                  <p class="mt-3 text-sm leading-7 text-[#687469]">
+                    By asking questions and giving children time to experiment, I help them practise logical thinking, creative problem-solving, and persistence in a supportive classroom. The focus is on learning by doing: making a prediction, testing an idea, and enjoying the discovery together.
+                  </p>
+                  <div class="mt-6 flex flex-wrap gap-2">
+                    <span class="rounded-full bg-[#e8f2ef] px-3 py-1.5 text-xs font-medium">Early childhood</span>
+                    <span class="rounded-full bg-[#e8f2ef] px-3 py-1.5 text-xs font-medium">Robotics</span>
+                    <span class="rounded-full bg-[#e8f2ef] px-3 py-1.5 text-xs font-medium">Beginner programming</span>
+                    <span class="rounded-full bg-[#e8f2ef] px-3 py-1.5 text-xs font-medium">Creative thinking</span>
+                  </div>
+                  <a
+                    href="#mindx-demos"
+                    class="mt-7 inline-flex items-center gap-2 rounded-full bg-[#20372b] px-5 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#456047]"
+                  >
+                    Explore class demos <span aria-hidden="true">↓</span>
+                  </a>
+              </article>
+
+              <div id="mindx-demos" class="mt-12 scroll-mt-8">
+                <div class="flex flex-wrap items-end justify-between gap-3">
+                  <div>
+                    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#548a84]">Classroom demos</p>
+                    <h3 class="mt-2 text-2xl font-semibold tracking-tight">See the learning in action.</h3>
+                  </div>
+                  <p class="text-sm text-[#687469]">Scroll through the photos and choose a demo to watch.</p>
+                </div>
+                <div class="mt-5 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4">
+                  {mindxDemos.map((demo, index) => (
+                    <article class="w-[85%] shrink-0 snap-start overflow-hidden rounded-[1.5rem] bg-white shadow-sm ring-1 ring-[#20372b]/5 sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.7rem)]">
+                      <figure class="group relative overflow-hidden bg-[#e8f2ef]">
+                        <Image
+                          src={demo.src}
+                          alt={demo.alt}
+                          class="pointer-events-none aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                          loading="lazy"
+                        />
+                        <button
+                          type="button"
+                          data-experience-lightbox
+                          aria-label={`Enlarge ${demo.title} photo`}
+                          class="absolute inset-0 z-10 cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-white"
+                        ></button>
+                        <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-2 bg-gradient-to-t from-[#12231b]/80 to-transparent px-3 pb-3 pt-8 text-[11px] font-semibold text-white">
+                          <span data-experience-caption>Demo 0{index + 1}</span>
+                        </figcaption>
+                      </figure>
+                      <div class="flex items-center justify-between gap-3 p-4 sm:p-5">
+                        <h4 class="font-semibold">{demo.title}</h4>
+                        <a
+                          href={`https://youtu.be/${demo.videoId}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          class="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#e8f2ef] px-4 py-2.5 text-xs font-semibold text-[#20372b] transition-colors hover:bg-[#d6e8e3]"
+                          aria-label={`Watch ${demo.title} video on YouTube`}
+                        >
+                          Watch demo <span aria-hidden="true">↗</span>
+                        </a>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </>
+          ) : experience.company === "DigiUni" ? (
+            <>
+              <p class="text-xs font-semibold uppercase tracking-[0.2em]" style={`color: ${experience.accent}`}>Teach · Support · Celebrate</p>
+              <h2 class="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">Making digital skills fun, one lesson at a time.</h2>
+              <p class="mt-4 max-w-3xl text-sm leading-7 text-[#687469] sm:text-base">
+                Taught children aged 7–9 in one-on-one and small-group classes of 1–6 students, building programming and digital creativity through hands-on activities.
+              </p>
+
+              <div class="mt-8 grid gap-4 md:grid-cols-2">
+                <article class="rounded-[1.5rem] bg-white p-6 sm:p-7">
+                  <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#9776b2]">01 / Create</p>
+                  <h3 class="mt-2 text-xl font-semibold tracking-tight">Scratch programming</h3>
+                  <p class="mt-3 text-sm leading-7 text-[#687469]">
+                    Guided students through Scratch projects, introducing programming concepts and helping them bring their ideas to life with interactive stories and activities.
+                  </p>
+                </article>
+                <article class="rounded-[1.5rem] bg-white p-6 sm:p-7">
+                  <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#9776b2]">02 / Play</p>
+                  <h3 class="mt-2 text-xl font-semibold tracking-tight">Programming with CodeCombat</h3>
+                  <p class="mt-3 text-sm leading-7 text-[#687469]">
+                    Used CodeCombat’s game-based challenges to help students understand basic programming logic as they progressed through levels and solved problems.
+                  </p>
+                </article>
+                <article class="rounded-[1.5rem] bg-white p-6 sm:p-7">
+                  <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#9776b2]">03 / Design</p>
+                  <h3 class="mt-2 text-xl font-semibold tracking-tight">3D modelling with Maker Empire</h3>
+                  <p class="mt-3 text-sm leading-7 text-[#687469]">
+                    Introduced students to 3D design using Maker Empire, supporting them as they created basic models and developed spatial thinking.
+                  </p>
+                </article>
+                <article class="rounded-[1.5rem] bg-white p-6 sm:p-7">
+                  <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#9776b2]">04 / Encourage</p>
+                  <h3 class="mt-2 text-xl font-semibold tracking-tight">Personalised progress support</h3>
+                  <p class="mt-3 text-sm leading-7 text-[#687469]">
+                    Shared progress feedback with parents and adjusted lesson difficulty to suit each student’s level, helping learners stay supported and appropriately challenged.
+                  </p>
+                </article>
+              </div>
+
+              <section class="mt-8 overflow-hidden rounded-[1.5rem] bg-[#302442] p-6 text-white sm:p-8" aria-labelledby="hkico-award-title">
+                <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+                  <div class="max-w-xl">
+                    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#d7c0f0]">Competition preparation</p>
+                    <h3 id="hkico-award-title" class="mt-2 text-2xl font-semibold tracking-tight">HKICO student awards</h3>
+                    <p class="mt-3 text-sm leading-7 text-white/75">
+                      Prepared students for HKICO, supporting their practice and helping them build confidence ahead of the competition.
+                    </p>
+                  </div>
+                  <div class="grid grid-cols-2 gap-3 sm:min-w-72">
+                    <div class="rounded-2xl bg-white/10 p-4 text-center">
+                      <p class="text-3xl font-semibold text-[#f6d782]">1</p>
+                      <p class="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-white/80">Gold</p>
+                    </div>
+                    <div class="rounded-2xl bg-white/10 p-4 text-center">
+                      <p class="text-3xl font-semibold text-[#e3e6f0]">2</p>
+                      <p class="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-white/80">Silver</p>
+                    </div>
+                    <div class="col-span-2 rounded-2xl bg-white/10 p-4 text-center sm:col-span-2">
+                      <p class="text-3xl font-semibold text-[#e5a77b]">1</p>
+                      <p class="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-white/80">Bronze</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </>
+          ) : experience.company === "Tagedu" ? (
+            <>
+              <p class="text-xs font-semibold uppercase tracking-[0.2em]" style={`color: ${experience.accent}`}>Plan · Teach · Assess</p>
+              <h2 class="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">Helping students build skills for the future.</h2>
+              <p class="mt-4 max-w-3xl text-sm leading-7 text-[#687469] sm:text-base">
+                At Tagedu, I teach students across robotics, creative coding, web development, and artificial intelligence—turning new technology into practical, engaging learning experiences.
+              </p>
+
+              <div class="mt-8 grid gap-6 md:grid-cols-[0.9fr_1.1fr] md:items-center">
+                <figure class="group relative overflow-hidden rounded-[1.5rem] bg-[#fbf0e3]">
+                  <Image
+                    src={tageduPhoto}
+                    alt="Teaching a student during a TagEdu computer programming class"
+                    class="pointer-events-none aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    loading="lazy"
+                  />
+                  <button
+                    type="button"
+                    data-experience-lightbox
+                    aria-label="Enlarge TagEdu classroom photo"
+                    class="absolute inset-0 z-10 cursor-zoom-in rounded-[1.5rem] focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-white"
+                  ></button>
+                  <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[#12231b]/80 to-transparent px-4 pb-4 pt-10 text-xs font-semibold text-white">
+                    <span data-experience-caption>Learning in the TagEdu classroom</span>
+                  </figcaption>
+                </figure>
+
+                <div class="space-y-4">
+                  <article class="rounded-[1.5rem] bg-white p-6 sm:p-7">
+                    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#b77937]">01 / Prepare</p>
+                    <h3 class="mt-2 text-xl font-semibold tracking-tight">Design clear, engaging lessons</h3>
+                    <p class="mt-3 text-sm leading-7 text-[#687469]">
+                      Prepared lesson content and learning activities for a range of technology subjects, breaking complex ideas into clear, achievable steps. Matched explanations and practice tasks to students’ levels so they could learn concepts by building and experimenting.
+                    </p>
+                  </article>
+                  <article class="rounded-[1.5rem] bg-white p-6 sm:p-7">
+                    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#b77937]">02 / Teach</p>
+                    <h3 class="mt-2 text-xl font-semibold tracking-tight">Make technology hands-on</h3>
+                    <p class="mt-3 text-sm leading-7 text-[#687469]">
+                      Delivered lessons and guided students as they explored LEGO SPIKE robotics, Scratch, web development, AI, and Python. Supported learners as they applied new skills, worked through challenges, and developed their own ideas.
+                    </p>
+                  </article>
+                  <article class="rounded-[1.5rem] bg-white p-6 sm:p-7">
+                    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#b77937]">03 / Evaluate</p>
+                    <h3 class="mt-2 text-xl font-semibold tracking-tight">Track learning and give feedback</h3>
+                    <p class="mt-3 text-sm leading-7 text-[#687469]">
+                      Assessed student understanding through class activities and completed work, then used observations to give constructive feedback and identify next steps for continued progress.
+                    </p>
+                  </article>
+                </div>
+              </div>
+
+              <div class="mt-8 rounded-[1.5rem] bg-[#fbf0e3] p-6 sm:p-8">
+                <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#b77937]">Subjects taught</p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="rounded-full bg-white px-4 py-2 text-sm font-medium">LEGO SPIKE</span>
+                  <span class="rounded-full bg-white px-4 py-2 text-sm font-medium">Scratch</span>
+                  <span class="rounded-full bg-white px-4 py-2 text-sm font-medium">Web Development</span>
+                  <span class="rounded-full bg-white px-4 py-2 text-sm font-medium">Artificial Intelligence</span>
+                  <span class="rounded-full bg-white px-4 py-2 text-sm font-medium">Python</span>
+                </div>
+              </div>
+
+              <section class="mt-8 overflow-hidden rounded-[1.5rem] bg-[#49331f] p-6 text-white sm:p-8" aria-labelledby="tagedu-hkico-award-title">
+                <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+                  <div class="max-w-xl">
+                    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#f1d2a8]">Competition preparation</p>
+                    <h3 id="tagedu-hkico-award-title" class="mt-2 text-2xl font-semibold tracking-tight">HKICO student awards</h3>
+                    <p class="mt-3 text-sm leading-7 text-white/75">
+                      Prepared students for HKICO, guiding their practice and helping them build confidence for the competition.
+                    </p>
+                  </div>
+                  <div class="grid grid-cols-2 gap-3 sm:min-w-72">
+                    <div class="rounded-2xl bg-white/10 p-4 text-center">
+                      <p class="text-3xl font-semibold text-[#f6d782]">1</p>
+                      <p class="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-white/80">Gold</p>
+                    </div>
+                    <div class="rounded-2xl bg-white/10 p-4 text-center">
+                      <p class="text-3xl font-semibold text-[#e5a77b]">2</p>
+                      <p class="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-white/80">Bronze</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </>
+          ) : (
+            <>
+              <p class="text-xs font-semibold uppercase tracking-[0.2em]" style={`color: ${experience.accent}`}>About this role</p>
+              <h2 class="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">A closer look at my work.</h2>
+              <p class="mt-4 max-w-2xl text-sm leading-7 text-[#687469] sm:text-base">
+                I’ll share more about my responsibilities, projects, and experience at {experience.company} here soon.
+              </p>
+              <div class="mt-8 grid gap-4 sm:grid-cols-2">
+                <div class="min-h-32 rounded-2xl bg-[#f5f3ec] p-5">
+                  <h3 class="font-semibold">What I worked on</h3>
+                  <p class="mt-2 text-sm leading-6 text-[#687469]">Add role responsibilities and teaching activities here.</p>
+                </div>
+                <div class="min-h-32 rounded-2xl bg-[#f5f3ec] p-5">
+                  <h3 class="font-semibold">Projects &amp; highlights</h3>
+                  <p class="mt-2 text-sm leading-6 text-[#687469]">Add projects, outcomes, or memorable classroom moments here.</p>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+        <dialog
+          id="experience-lightbox"
+          aria-label="Expanded experience photo"
+          class="fixed inset-0 m-0 h-dvh max-h-none w-screen max-w-none border-0 bg-black/90 p-4 text-white backdrop:bg-black/80 sm:p-8"
+        >
+          <div class="flex h-full w-full flex-col items-center justify-center gap-3">
+            <button
+              type="button"
+              data-close-experience-lightbox
+              class="absolute right-4 top-4 z-10 flex size-11 items-center justify-center rounded-full bg-white/15 text-2xl leading-none text-white transition-colors hover:bg-white/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-8 sm:top-8"
+              aria-label="Close expanded photo"
+            >
+              &times;
+            </button>
+            <img
+              data-experience-lightbox-image
+              class="max-h-[85vh] max-w-full rounded-xl object-contain shadow-2xl"
+              alt=""
+            />
+            <p data-experience-lightbox-caption class="text-center text-sm font-medium text-white/85"></p>
+          </div>
+        </dialog>
+        <a href="/#experience" class="mt-8 inline-flex items-center gap-2 rounded-full bg-[#20372b] px-5 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#456047]">
+          <span aria-hidden="true">←</span>
+          Back to experience
+        </a>
+      </section>
+    </main>
+    <script>
+      const experienceLightbox = document.querySelector<HTMLDialogElement>("#experience-lightbox");
+      const experienceLightboxImage = document.querySelector<HTMLImageElement>("[data-experience-lightbox-image]");
+      const experienceLightboxCaption = document.querySelector<HTMLParagraphElement>("[data-experience-lightbox-caption]");
+
+      if (experienceLightbox && experienceLightboxImage && experienceLightboxCaption) {
+        document.querySelectorAll<HTMLButtonElement>("[data-experience-lightbox]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const thumbnail = button.parentElement?.querySelector("img");
+            if (!thumbnail) return;
+
+            const caption = button.parentElement?.querySelector("[data-experience-caption]");
+            experienceLightboxImage.src = thumbnail.currentSrc || thumbnail.src;
+            experienceLightboxImage.alt = thumbnail.alt;
+            experienceLightboxCaption.textContent = caption?.textContent?.trim() ?? thumbnail.alt;
+            experienceLightbox.showModal();
+          });
+        });
+
+        experienceLightbox.querySelector("[data-close-experience-lightbox]")?.addEventListener("click", () => {
+          experienceLightbox.close();
+        });
+        experienceLightbox.addEventListener("click", (event) => {
+          if (event.target === experienceLightbox) experienceLightbox.close();
+        });
+      }
+    </script>
+  </body>
+</html>
