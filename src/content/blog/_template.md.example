@@ -17,7 +17,7 @@ Write paragraphs, add headings, or make lists:
 
 To add an image, put it in `public/images/blog/` and use:
 
-![Describe the image](/images/blog/your-image.jpg)
+![Describe the image](/portfolio/images/blog/your-image.jpg)
 
 When the post is ready, change `draft: true` to `draft: false`.
 

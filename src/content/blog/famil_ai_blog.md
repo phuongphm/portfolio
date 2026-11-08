@@ -5,7 +5,7 @@ coverImage: "/images/blog/familai/family.png"
 pubDate: 2026-10-24
 category: "Project"
 ---
-![family iamge](/images/blog/familai/family.png)
+![family iamge](/portfolio/images/blog/familai/family.png)
 
 The image of family is often associated with shared meals, conversations after a long day, or simply the comforting feeling of coming home. Family is where we find love, trust, and a sense of belonging.
 
@@ -47,7 +47,7 @@ In the game, two family members join the same room using a Room Code and receive
 
 The Media Composer combines different elements, such as images, headlines, captions, and contextual information, to create a seemingly credible social media post. The Investigator must observe, ask questions, and decide whether the content is trustworthy.
 
-![FAMIL.AI iamge](/images/blog/familai/FAMILAI.png)
+![FAMIL.AI iamge](/portfolio/images/blog/familai/FAMILAI.png)
 
 After each round, they switch roles and experience a new scenario.
 
@@ -83,7 +83,7 @@ I had the opportunity to initiate an idea, coordinate the team, design the game,
 
 Our team eventually completed the project proposal and video pitch and submitted them to the UNESCO Youth Hackathon. Unfortunately, FAMIL.AI was not selected for the next round, so we did not get the opportunity to present our idea to the judging panel.
 
-![certificate iamge](/images/blog/familai/certificate.png)
+![certificate iamge](/portfolio/images/blog/familai/certificate.png)
 
 Although we did not achieve the competition outcome we had hoped for, I am still proud of what we created together. If I had another opportunity, I would love to test the game with real families and continue improving the user experience.
 

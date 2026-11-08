@@ -6,7 +6,7 @@ pubDate: 2026-10-24
 category: "Project"
 ---
 
-![hero image](/images/blog/ramify/hero.png)
+![hero image](/portfolio/images/blog/ramify/hero.png)
 
 ## It started with a personal struggle
 Have you ever looked at an IELTS Writing Task 2 question and struggled
@@ -66,7 +66,7 @@ Although I did not win the competition, participating in AI Riser
 Vietnam gave me a valuable opportunity to experiment with AI and turn a
 personal idea into a working project.
 
-![certificate iamge](/images/blog/ramify/certificate.png)
+![certificate iamge](/portfolio/images/blog/ramify/certificate.png)
 
 ## What Ramify taught me
 

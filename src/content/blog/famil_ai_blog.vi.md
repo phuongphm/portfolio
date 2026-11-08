@@ -8,7 +8,7 @@ pubDate: 2026-10-24
 category: "Project"
 ---
 
-![Ảnh gia đình](/images/blog/familai/family.png)
+![Ảnh gia đình](/portfolio/images/blog/familai/family.png)
 
 Khi nghĩ về gia đình, ta thường hình dung những bữa ăn quây quần, những cuộc trò chuyện sau một ngày dài, hay cảm giác bình yên khi trở về nhà. Gia đình là nơi ta tìm thấy tình yêu thương, niềm tin và cảm giác thuộc về.
 
@@ -50,7 +50,7 @@ Trong trò chơi, hai thành viên trong gia đình vào cùng một phòng bằ
 
 Người sáng tạo nội dung kết hợp hình ảnh, tiêu đề, chú thích và thông tin bối cảnh để tạo một bài đăng mạng xã hội có vẻ đáng tin. Điều tra viên cần quan sát, đặt câu hỏi và quyết định nội dung đó có đáng tin hay không.
 
-![Hình ảnh FAMIL.AI](/images/blog/familai/FAMILAI.png)
+![Hình ảnh FAMIL.AI](/portfolio/images/blog/familai/FAMILAI.png)
 
 Sau mỗi lượt, họ đổi vai và cùng trải nghiệm một tình huống mới.
 
@@ -86,7 +86,7 @@ Mình có cơ hội khởi xướng ý tưởng, điều phối nhóm, thiết k
 
 Cuối cùng, nhóm hoàn thành đề xuất dự án và video thuyết trình để gửi đến UNESCO Youth Hackathon. Đáng tiếc, FAMIL.AI không được chọn vào vòng tiếp theo nên chúng mình chưa có cơ hội trình bày ý tưởng trước ban giám khảo.
 
-![Chứng nhận UNESCO Youth Hackathon](/images/blog/familai/certificate.png)
+![Chứng nhận UNESCO Youth Hackathon](/portfolio/images/blog/familai/certificate.png)
 
 Dù kết quả cuộc thi không như mong đợi, mình vẫn tự hào về những gì cả nhóm đã cùng tạo ra. Nếu có cơ hội, mình muốn thử nghiệm trò chơi với các gia đình thật và tiếp tục cải thiện trải nghiệm người dùng.
 

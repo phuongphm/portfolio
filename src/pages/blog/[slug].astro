@@ -38,11 +38,11 @@ const VietnameseContent = translation ? (await render(translation)).Content : un
   <body class="bg-[#f5f3ec] text-[#20372b] antialiased">
     <main class="mx-auto min-h-screen max-w-3xl px-5 sm:px-8">
       <header class="flex items-center justify-between gap-4 py-5">
-        <a href="/" class="group flex items-center gap-3" aria-label="Phuong Pham, home">
+        <a href={import.meta.env.BASE_URL} class="group flex items-center gap-3" aria-label="Phuong Pham, home">
           <span class="flex size-10 items-center justify-center rounded-full bg-[#20372b] text-lg font-semibold text-[#cfe8b3] transition-transform group-hover:rotate-12">P</span>
           <span class="text-sm font-semibold tracking-wide">PHUONG PHAM</span>
         </a>
-        <a href="/#blog" class="inline-flex items-center gap-2 rounded-full border border-[#20372b]/15 px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-white">
+        <a href={`${import.meta.env.BASE_URL}#blog`} class="inline-flex items-center gap-2 rounded-full border border-[#20372b]/15 px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-white">
           <span aria-hidden="true">←</span>
           All stories
         </a>
@@ -50,7 +50,7 @@ const VietnameseContent = translation ? (await render(translation)).Content : un
       </header>
 
       <article class="py-12 sm:py-20">
-        <a href="/#blog" class="text-xs font-semibold uppercase tracking-[0.2em] text-[#789257]">Stories / Blog</a>
+        <a href={`${import.meta.env.BASE_URL}#blog`} class="text-xs font-semibold uppercase tracking-[0.2em] text-[#789257]">Stories / Blog</a>
         <h1 class="mt-5 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
           <span data-language-content="en">{post.data.title}</span>
           {translation && <span data-language-content="vi" hidden>{translation.data.title}</span>}
@@ -73,7 +73,7 @@ const VietnameseContent = translation ? (await render(translation)).Content : un
           </div>
         )}
 
-        <a href="/#blog" class="mt-12 inline-flex items-center gap-2 rounded-full bg-[#20372b] px-5 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#456047]">
+        <a href={`${import.meta.env.BASE_URL}#blog`} class="mt-12 inline-flex items-center gap-2 rounded-full bg-[#20372b] px-5 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#456047]">
           <span aria-hidden="true">←</span>
           Back to all stories
         </a>

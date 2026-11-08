@@ -7,7 +7,7 @@ pubDate: 2026-10-24
 category: "Project"
 ---
 
-![Ảnh bìa Ramify](/images/blog/ramify/hero.png)
+![Ảnh bìa Ramify](/portfolio/images/blog/ramify/hero.png)
 
 ## Mọi thứ bắt đầu từ một khó khăn cá nhân
 
@@ -68,7 +68,7 @@ Dù không đạt giải trong cuộc thi, AI Riser Vietnam vẫn mang lại cho
 một trải nghiệm đáng giá: cơ hội thử nghiệm với AI và biến một ý tưởng
 cá nhân thành một sản phẩm thực tế.
 
-![Chứng nhận AI Riser Vietnam](/images/blog/ramify/certificate.png)
+![Chứng nhận AI Riser Vietnam](/portfolio/images/blog/ramify/certificate.png)
 
 ## Những điều Ramify mang lại cho mình
 
