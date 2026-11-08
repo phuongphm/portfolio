@@ -13,6 +13,8 @@ import mindxLogo from "../assets/Mindx.png";
 import tageduLogo from "../assets/TagEdu.png";
 import digiuniLogo from "../assets/digiuni.png";
 import "../styles/global.css";
+import GoogleTagManagerHead from "../components/GoogleTagManagerHead.astro";
+import GoogleTagManagerBody from "../components/GoogleTagManagerBody.astro";
 import LanguageSwitch from "../components/LanguageSwitch.astro";
 
 const name = "Phuong Pham";
@@ -31,6 +33,7 @@ const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sor
 
 <html lang="en">
   <head>
+    <GoogleTagManagerHead />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta
@@ -43,6 +46,7 @@ const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sor
   </head>
 
   <body class="bg-[#f5f3ec] text-[#20372b] antialiased">
+    <GoogleTagManagerBody />
     <main class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
       <header class="sticky top-0 z-50 flex flex-wrap items-center justify-between gap-5 bg-[#f5f3ec] py-5">
         <a href="#about" class="group flex items-center gap-3" aria-label="Phuong Pham, home">

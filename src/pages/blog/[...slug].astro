@@ -1,6 +1,8 @@
 ---
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import "../../styles/global.css";
+import GoogleTagManagerHead from "../../components/GoogleTagManagerHead.astro";
+import GoogleTagManagerBody from "../../components/GoogleTagManagerBody.astro";
 
 type Props = {
   post: CollectionEntry<"blog">;
@@ -54,6 +56,7 @@ const coverImageUrl = coverImage
 <!doctype html>
 <html lang={language}>
   <head>
+    <GoogleTagManagerHead />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#f5f3ec" />
@@ -83,6 +86,7 @@ const coverImageUrl = coverImage
     <title>{page.data.title} — Phuong Pham</title>
   </head>
   <body class="bg-[#f5f3ec] text-[#20372b] antialiased">
+    <GoogleTagManagerBody />
     <main class="mx-auto min-h-screen max-w-3xl px-5 sm:px-8">
       <header class="flex items-center justify-between gap-4 py-5">
         <a href={`${import.meta.env.BASE_URL}/`} class="group flex items-center gap-3" aria-label="Phuong Pham, home">
