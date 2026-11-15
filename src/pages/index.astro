@@ -48,7 +48,7 @@ const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sor
   <body class="bg-[#f5f3ec] text-[#20372b] antialiased">
     <GoogleTagManagerBody />
     <main class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
-      <header class="sticky top-0 z-50 flex flex-wrap items-center justify-between gap-5 bg-[#f5f3ec] py-5">
+      <header class="sticky top-0 z-50 grid grid-cols-[1fr_auto_auto] items-center gap-x-3 gap-y-3 bg-[#f5f3ec] py-4 sm:py-5 lg:flex lg:justify-between lg:gap-5">
         <a href="#about" class="group flex items-center gap-3" aria-label="Phuong Pham, home">
           <span class="flex size-10 items-center justify-center rounded-full bg-[#20372b] text-lg font-semibold text-[#cfe8b3] transition-transform group-hover:rotate-12">
             P
@@ -56,20 +56,64 @@ const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sor
           <span class="text-sm font-semibold tracking-wide">PHUONG PHAM</span>
         </a>
 
-        <nav aria-label="Main navigation">
-          <ul class="flex flex-wrap items-center justify-end gap-x-4 gap-y-2 text-sm text-[#5c695e] sm:gap-x-6">
-            <li><a href="#about" class="rounded-full px-2 py-2 transition-colors hover:text-[#20372b]">About</a></li>
-            <li><a href="#education" class="rounded-full px-2 py-2 transition-colors hover:text-[#20372b]">Education</a></li>
-            <li><a href="#certification" class="rounded-full px-2 py-2 transition-colors hover:text-[#20372b]">Certification</a></li>
-            <li><a href="#experience" class="rounded-full px-2 py-2 transition-colors hover:text-[#20372b]">Experience</a></li>
-            <li><a href="#projects" class="rounded-full px-2 py-2 transition-colors hover:text-[#20372b]">Projects</a></li>
-            <li><a href="#awards" class="rounded-full px-2 py-2 transition-colors hover:text-[#20372b]">Awards</a></li>
-            <li><a href="#blog" class="rounded-full px-2 py-2 transition-colors hover:text-[#20372b]">Blog</a></li>
-            <li><a href="#contact" class="rounded-full px-2 py-2 transition-colors hover:text-[#20372b]">Contact</a></li>
+        <button
+          type="button"
+          class="inline-flex items-center gap-2 rounded-full border border-[#20372b]/20 bg-white/70 px-3 py-2 text-sm font-semibold text-[#20372b] transition-colors hover:bg-[#cfe8b3] lg:hidden"
+          aria-controls="main-navigation"
+          aria-expanded="false"
+          aria-label="Toggle navigation menu"
+          data-menu-toggle
+        >
+          <svg viewBox="0 0 24 24" class="size-5 fill-none stroke-current" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <span data-language-content="en">Menu</span>
+          <span data-language-content="vi" hidden>Danh mục</span>
+        </button>
+
+        <nav id="main-navigation" class="col-span-3 hidden w-full lg:order-2 lg:col-span-1 lg:block lg:w-auto" aria-label="Main navigation" data-menu-panel>
+          <ul class="flex flex-col gap-1 text-sm text-[#5c695e] lg:flex-row lg:items-center lg:justify-end lg:gap-x-3 xl:gap-x-5">
+            <li><a href="#about" class="block rounded-xl px-3 py-2 transition-colors hover:bg-white/70 hover:text-[#20372b] lg:rounded-full lg:px-2 lg:hover:bg-transparent">About</a></li>
+            <li><a href="#education" class="block rounded-xl px-3 py-2 transition-colors hover:bg-white/70 hover:text-[#20372b] lg:rounded-full lg:px-2 lg:hover:bg-transparent">Education</a></li>
+            <li><a href="#certification" class="block rounded-xl px-3 py-2 transition-colors hover:bg-white/70 hover:text-[#20372b] lg:rounded-full lg:px-2 lg:hover:bg-transparent">Certification</a></li>
+            <li><a href="#experience" class="block rounded-xl px-3 py-2 transition-colors hover:bg-white/70 hover:text-[#20372b] lg:rounded-full lg:px-2 lg:hover:bg-transparent">Experience</a></li>
+            <li><a href="#projects" class="block rounded-xl px-3 py-2 transition-colors hover:bg-white/70 hover:text-[#20372b] lg:rounded-full lg:px-2 lg:hover:bg-transparent">Projects</a></li>
+            <li><a href="#awards" class="block rounded-xl px-3 py-2 transition-colors hover:bg-white/70 hover:text-[#20372b] lg:rounded-full lg:px-2 lg:hover:bg-transparent">Awards</a></li>
+            <li><a href="#blog" class="block rounded-xl px-3 py-2 transition-colors hover:bg-white/70 hover:text-[#20372b] lg:rounded-full lg:px-2 lg:hover:bg-transparent">Blog</a></li>
+            <li><a href="#contact" class="block rounded-xl px-3 py-2 transition-colors hover:bg-white/70 hover:text-[#20372b] lg:rounded-full lg:px-2 lg:hover:bg-transparent">Contact</a></li>
           </ul>
         </nav>
-        <LanguageSwitch />
+        <div class="col-start-3 row-start-1 lg:order-3">
+          <LanguageSwitch />
+        </div>
       </header>
+
+      <script>
+        const menuToggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+        const menuPanel = document.querySelector<HTMLElement>("[data-menu-panel]");
+
+        if (menuToggle && menuPanel) {
+          const setMenuOpen = (isOpen: boolean) => {
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+            menuPanel.classList.toggle("hidden", !isOpen);
+          };
+
+          menuToggle.addEventListener("click", () => {
+            setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
+          });
+
+          menuPanel.querySelectorAll<HTMLAnchorElement>("a").forEach((link) => {
+            link.addEventListener("click", () => setMenuOpen(false));
+          });
+
+          document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") {
+              setMenuOpen(false);
+              menuToggle.focus();
+            }
+          });
+        }
+      </script>
 
       <section id="about" class="scroll-mt-24 py-8 sm:py-12 lg:py-16">
         <div class="grid items-center gap-10 lg:grid-cols-[1fr_0.95fr] lg:gap-14">
@@ -147,7 +191,7 @@ const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sor
             <div class="absolute left-8 top-8 size-24 rounded-full border border-[#456047]/20 sm:left-12 sm:top-12 sm:size-32" aria-hidden="true"></div>
             <div class="absolute right-8 top-12 size-3 rounded-full bg-[#789257] sm:right-16 sm:top-20 sm:size-4" aria-hidden="true"></div>
             <div class="absolute bottom-8 left-8 h-px w-20 bg-[#456047]/30 sm:bottom-12 sm:left-12 sm:w-28" aria-hidden="true"></div>
-            <div class="absolute left-4 top-16 z-20 -rotate-6 rounded-xl border-2 border-[#20372b] bg-[#cfe8b3] px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-[#20372b] shadow-[4px_4px_0_#20372b] sm:left-8 sm:top-24 sm:px-4 sm:py-3 sm:text-xs">
+            <div class="absolute left-3 top-3 z-20 max-w-[125px] -rotate-6 rounded-xl border-2 border-[#20372b] bg-[#cfe8b3] px-2 py-1.5 text-[9px] font-black uppercase tracking-[0.12em] text-[#20372b] shadow-[3px_3px_0_#20372b] sm:left-8 sm:top-24 sm:max-w-none sm:px-4 sm:py-3 sm:text-xs sm:tracking-[0.14em] sm:shadow-[4px_4px_0_#20372b]">
               Your friendly<br />coding teacher!
             </div>
             <div class="hero-float relative z-10 w-full max-w-[520px] px-5 pt-5 sm:px-8">
