@@ -19,6 +19,14 @@ import LanguageSwitch from "../components/LanguageSwitch.astro";
 
 const name = "Phuong Pham";
 const role = "Coding Teacher";
+const resolveAssetUrl = (url: string) =>
+  import.meta.env.DEV
+    ? `${import.meta.env.BASE_URL}/${url.replace(/^\/+/, "")}`
+    : url;
+const safeguardingCertificateUrl = resolveAssetUrl(safeguardingCertificate);
+const oxfordCertificateUrl = resolveAssetUrl(oxfordCertificate);
+const unescoCertificateUrl = resolveAssetUrl(unescoCertificate);
+const aiRiserCertificateUrl = resolveAssetUrl(aiRiserCertificate);
 const siteUrl = Astro.site ?? new URL("https://phuongphm.github.io");
 const pageUrl = new URL(`${import.meta.env.BASE_URL}/`, siteUrl).href;
 const socialImageUrl = new URL(
@@ -435,7 +443,7 @@ const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sor
               <h3 class="text-xl font-semibold">Introduction to Safeguarding</h3>
               <p class="mt-2 text-sm text-[#687469]">Nord Anglia Education</p>
             </div>
-            <a href={safeguardingCertificate} target="_blank" rel="noreferrer" class="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#20372b] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#456047]">
+            <a href={safeguardingCertificateUrl} target="_blank" rel="noreferrer" class="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#20372b] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#456047]">
               View certificate
             </a>
           </article>
@@ -613,7 +621,7 @@ const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sor
             <div class="p-4 sm:p-6">
               <figure class="group relative aspect-[1.45] overflow-hidden rounded-2xl bg-white ring-1 ring-[#20372b]/10">
                 <iframe
-                  src={`${unescoCertificate}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                  src={`${unescoCertificateUrl}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
                   title="FAMIL.AI UNESCO Youth Hackathon certificate"
                   class="pointer-events-none absolute inset-0 size-full bg-white"
                   loading="lazy"
@@ -621,7 +629,7 @@ const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sor
                 <button
                   type="button"
                   data-project-certificate
-                  data-certificate-url={unescoCertificate}
+                  data-certificate-url={unescoCertificateUrl}
                   data-certificate-title="FAMIL.AI - UNESCO Youth Hackathon certificate"
                   aria-label="Enlarge FAMIL.AI UNESCO Youth Hackathon certificate"
                   class="absolute inset-0 z-10 cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#456047]"
@@ -651,7 +659,7 @@ const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sor
             <div class="p-4 sm:p-6">
               <figure class="group relative aspect-[1.45] overflow-hidden rounded-2xl bg-white ring-1 ring-[#20372b]/10">
                 <iframe
-                  src={`${aiRiserCertificate}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                  src={`${aiRiserCertificateUrl}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
                   title="Ramify AI Riser Vietnam certificate"
                   class="pointer-events-none absolute inset-0 size-full bg-white"
                   loading="lazy"
@@ -659,7 +667,7 @@ const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sor
                 <button
                   type="button"
                   data-project-certificate
-                  data-certificate-url={aiRiserCertificate}
+                  data-certificate-url={aiRiserCertificateUrl}
                   data-certificate-title="Ramify - AI Riser Vietnam certificate"
                   aria-label="Enlarge Ramify AI Riser certificate"
                   class="absolute inset-0 z-10 cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#45618a]"
@@ -755,7 +763,7 @@ const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sor
             <div class="p-4 sm:p-6">
               <div class="relative aspect-[1.45] overflow-hidden rounded-2xl bg-white ring-1 ring-[#20372b]/10">
                 <iframe
-                  src={`${oxfordCertificate}#toolbar=0&navpanes=0&scrollbar=0&view=Fit`}
+                  src={`${oxfordCertificateUrl}#toolbar=0&navpanes=0&scrollbar=0&view=Fit`}
                   title="Oxford Climate Tech Challenge 2026 certificate preview"
                   class="pointer-events-none absolute inset-0 size-full bg-white"
                   loading="lazy"
@@ -819,7 +827,7 @@ const blogPosts = allBlogPosts.filter((post) => post.data.language === "en").sor
           &times;
         </button>
         <iframe
-          src={oxfordCertificate}
+          src={oxfordCertificateUrl}
           title="Oxford Climate Tech Challenge 2026 certificate"
           class="h-full w-full rounded-xl bg-white"
         ></iframe>
