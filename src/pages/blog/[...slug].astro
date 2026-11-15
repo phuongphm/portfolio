@@ -126,6 +126,31 @@ const coverImageUrl = coverImage
           <Content />
         </div>
 
+        <section class="mt-16 border-t border-[#20372b]/10 pt-8 sm:mt-20 sm:pt-10" aria-labelledby="comments-title">
+          <h2 id="comments-title" class="text-2xl font-semibold tracking-tight">
+            {language === "vi" ? "Bình luận" : "Comments"}
+          </h2>
+          <div class="mt-6">
+            <script
+              is:inline
+              src="https://giscus.app/client.js"
+              data-repo="phuongphm/portfolio"
+              data-repo-id="R_kgDOVm62kw"
+              data-category="General"
+              data-category-id="DIC_kwDOVm62k84DLKtG"
+              data-mapping="pathname"
+              data-strict="0"
+              data-reactions-enabled="1"
+              data-emit-metadata="0"
+              data-input-position="top"
+              data-theme="preferred_color_scheme"
+              data-lang="vi"
+              crossorigin="anonymous"
+              async
+            ></script>
+          </div>
+        </section>
+
         <a href={`${import.meta.env.BASE_URL}/#blog`} class="mt-12 inline-flex items-center gap-2 rounded-full bg-[#20372b] px-5 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#456047]">
           <span aria-hidden="true">←</span>
           Back to all stories
